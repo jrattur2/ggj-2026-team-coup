@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://beavtv02jelgd"]
+
+[ext_resource type="Script" uid="uid://dyaodag2l1fbs" path="res://Resources/Enemy/enemy.gd" id="1_pwe26"]
+
+[resource]
+script = ExtResource("1_pwe26")
+name = "test"
+difficulty = "easy"
+deck = Array[String](["5", "6"])
+metadata/_custom_type_script = "uid://dyaodag2l1fbs"
