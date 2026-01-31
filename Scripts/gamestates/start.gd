@@ -2,8 +2,7 @@ class_name Start
 extends GameState
 
 func enter_state():
-	# Reset the game state
-	game.reset_game()
+	game.initialise_cards()
 	
 	game.player_turn_text.text = 'Press Deal to start'
 	game.score_text.text = 'Ready to play'

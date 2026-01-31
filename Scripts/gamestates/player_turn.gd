@@ -29,6 +29,9 @@ func update_display():
 	var player_cards = game.get_hand_cards(game.player_hand)
 	var hand_value = game.calculate_hand_value(player_cards)
 	
+	game.splay_cards(game.player_1_card_1)
+	game.splay_cards(game.player_2_card_1)
+	
 	if game.is_busted(player_cards):
 		game.score_text.text = 'BUST! ' + str(hand_value)
 	else:

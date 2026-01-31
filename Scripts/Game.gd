@@ -11,10 +11,8 @@ var evaluate: GameState
 var end_game: GameState
 
 var deck: Node2D
-var player_1_card_1: Node2D  # Player hand container
-var player_1_card_2: Node2D  # Unused, keeping for compatibility
-var player_2_card_1: Node2D  # Dealer hand container
-var player_2_card_2: Node2D  # Unused, keeping for compatibility
+var player_1_card_1: Node2D  # Player hand container # Unused, keeping for compatibility
+var player_2_card_1: Node2D  # Dealer hand container  # Unused, keeping for compatibility
 
 var score_text: Label
 var player_turn_text: Label
@@ -29,10 +27,12 @@ var shuffle_button: Button
 var player_hand: Node2D  # Player's hand
 var dealer_hand: Node2D  # Dealer's hand
 
+var rng = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Randomize seed for each game session
-	randomize()
+	
+	rng.randomize()
 	
 	var currentRoot: String = '/root/StartupLevel/Ingame/BattleLevel/'
 	
@@ -60,9 +60,7 @@ func _ready() -> void:
 	
 	deck = get_node(currentRoot + "Deck")
 	player_1_card_1 = get_node(currentRoot + "Player/Player_1_Card_1")
-	player_1_card_2 = get_node(currentRoot + "Player/Player_1_Card_2")
 	player_2_card_1 = get_node(currentRoot + "Enemy/Player_2_Card_1")
-	player_2_card_2 = get_node(currentRoot + "Enemy/Player_2_Card_2")
 	
 	# Set up hand containers
 	player_hand = player_1_card_1
@@ -77,25 +75,22 @@ func _ready() -> void:
 	hit_button.disabled = true
 	stand_button.disabled = true
 	
-	initialise_cards()
-	
 	update_state(start)
 	pass # Replace with function body.
 
 func initialise_cards():
 	delete_children(deck)
 	delete_children(player_1_card_1)
-	delete_children(player_1_card_2)
 	delete_children(player_2_card_1)
-	delete_children(player_2_card_2)
 	
-	for card in build_deck():
+	for card: Card in build_deck():
 		card.face_up = false
+		card.previous_face_up_value = true
 		card.name = card.rank + '-' + card.suit
 		card.position.x = 0
 		card.position.y = 0
 			
-		deck.add_child(card)
+		deck.add_child(card, true)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -113,26 +108,6 @@ func update_state(new_state: GameState):
 func delete_children(node: Node):
 	for child in node.get_children():
 		child.queue_free()
-
-# Reset the game: clear hands, rebuild and shuffle deck
-func reset_game():
-	# Clear all hands
-	delete_children(player_hand)
-	delete_children(dealer_hand)
-	delete_children(player_1_card_2)
-	delete_children(player_2_card_2)
-	
-	# Clear and rebuild deck
-	delete_children(deck)
-	for card in build_deck():
-		card.face_up = false
-		card.name = card.rank + '-' + card.suit
-		card.position.x = 0
-		card.position.y = 0
-		deck.add_child(card)
-	
-	# Shuffle the deck
-	shuffle_deck(deck)
 
 func build_deck():
 	
@@ -201,11 +176,12 @@ func build_deck():
 
 func shuffle_deck(deck: Node):
 	for card in deck.get_children():
-		deck.move_child(card, randi_range(0, deck.get_children().size()))
+		deck.move_child(card, rng.randi_range(0, deck.get_children().size()))
 
-func move_card(card: Node, from: Node, to: Node):
+func move_card(card: Card, from: Node, to: Node):
+	card.update_display();
 	from.remove_child(card)
-	to.add_child(card)
+	to.add_child(card, true)
 	card.set_owner(to)  # Ensures the owner is set correctly
 
 # Calculate the best blackjack hand value from an array of Card nodes
@@ -251,13 +227,17 @@ func get_hand_cards(hand_container: Node2D) -> Array:
 func add_card_to_hand(card: Card, hand_container: Node2D, face_up: bool = true):
 	card.face_up = face_up
 	move_card(card, deck, hand_container)
-	
-	# Position card based on number of cards in hand
-	var card_count = hand_container.get_child_count() - 1  # -1 because we just added it
+	splay_cards(hand_container)
+
+
+func splay_cards(hand_container: Node2D):
+	  # -1 because we just added it
 	var card_spacing = 80  # Space between cards
-	var start_x = 0
-	card.position.x = start_x + (card_count * card_spacing)
-	card.position.y = 0
+	var current_x = 0
+	
+	for card: Card in hand_container.get_children():
+		card.position.x = current_x
+		current_x += card_spacing
 
 # Check if a hand has busted (over 21)
 func is_busted(cards: Array) -> bool:

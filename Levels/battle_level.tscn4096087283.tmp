@@ -53,8 +53,11 @@ label_settings = SubResource("LabelSettings_ukqk2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player_2_Card_1" type="Node2D" parent="Enemy"]
-position = Vector2(-400, 100)
+[node name="Player_2_Card_1" type="HBoxContainer" parent="Enemy"]
+offset_left = -400.0
+offset_top = 100.0
+offset_right = -400.0
+offset_bottom = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy/Player_2_Card_1"]
 texture = ExtResource("3_r7anb")
@@ -80,8 +83,9 @@ label_settings = SubResource("LabelSettings_ukqk2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player_1_Card_1" type="Node2D" parent="Player"]
-position = Vector2(-400, 0)
+[node name="Player_1_Card_1" type="HBoxContainer" parent="Player"]
+offset_left = -400.0
+offset_right = -400.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Player_1_Card_1"]
 texture = ExtResource("5_5sm0d")

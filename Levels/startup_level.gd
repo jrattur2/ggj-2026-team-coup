@@ -38,7 +38,7 @@ func _load_battle(info: BattleStartInfo):
 	assert(battle_scene)
 	current_battle = battle_scene.instantiate()
 	assert(current_battle)
-	ingame.add_child(current_battle)
+	ingame.add_child(current_battle, true)
 	_connect_battle_signals(current_battle)
 	current_battle.init_battle(info)
 

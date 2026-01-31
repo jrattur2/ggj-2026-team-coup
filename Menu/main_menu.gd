@@ -28,7 +28,7 @@ func _ready() -> void:
 	music_slider.value = AudioServer.get_bus_volume_linear(music_bus_index)
 	sfx_bus_index = AudioServer.get_bus_index("SFX")
 	sfx_slider.value = AudioServer.get_bus_volume_linear(sfx_bus_index)
-	
+
 
 func change_language(new_language : GameLanguage):
 	if new_language == current_language:
