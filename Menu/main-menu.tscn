@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://mabbruid8hy5"]
+
+[ext_resource type="Script" uid="uid://giv7366j4an5" path="res://Menu/main_menu.gd" id="1_n8aby"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n8aby")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 329.0
+offset_bottom = 126.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MENU_START"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EnButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+text = "English"
+
+[node name="JaButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+text = "日本語"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MENU_AUDIO_MASTER"
+
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "MENU_AUDIO_MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "MENU_AUDIO_SFX"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/EnButton" to="." method="_on_en_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/JaButton" to="." method="_on_ja_button_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
