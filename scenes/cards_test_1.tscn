@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbbpee7gvqk46"]
+[gd_scene load_steps=11 format=3 uid="uid://dbbpee7gvqk46"]
 
 [ext_resource type="Texture2D" uid="uid://5ygqlq5jwnbu" path="res://assets/external/Playing Cards/card-back1.png" id="2_krw6o"]
-[ext_resource type="Script" uid="uid://r4iew8ne4ddd" path="res://scripts/card_manager.gd" id="2_t53d7"]
 [ext_resource type="Texture2D" uid="uid://bij4hie6cwt7a" path="res://assets/external/Playing Cards/card-clubs-1.png" id="3_v5jvv"]
 [ext_resource type="Texture2D" uid="uid://bt3db74u40023" path="res://assets/external/Playing Cards/card-clubs-5.png" id="4_1o3wq"]
 [ext_resource type="Texture2D" uid="uid://c7anevx4hjr8n" path="res://assets/external/Playing Cards/card-clubs-9.png" id="5_l20ii"]
 [ext_resource type="Texture2D" uid="uid://das74rcu1ij8a" path="res://assets/external/Playing Cards/card-diamonds-2.png" id="6_jnmty"]
+[ext_resource type="Script" uid="uid://ccgjmurtctj3" path="res://scripts/Game.gd" id="6_v5jvv"]
+[ext_resource type="Script" uid="uid://brgsaeu8pjjn4" path="res://scripts/gamestates/player_turn.gd" id="7_8skjy"]
+[ext_resource type="Script" uid="uid://rjifhhn6q1vr" path="res://scripts/gamestates/dealer_turn.gd" id="8_ufhb6"]
+[ext_resource type="Script" uid="uid://bjfibqxmhqck5" path="res://scripts/gamestates/deal.gd" id="9_5r4lc"]
+[ext_resource type="Script" uid="uid://cahvi30p0vqjm" path="res://scripts/gamestates/start.gd" id="10_3hfb8"]
 
-[node name="Game" type="Node2D"]
-
-[node name="CardManager" type="Node" parent="."]
-script = ExtResource("2_t53d7")
+[node name="level" type="Node2D"]
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(700, 500)
@@ -48,30 +49,50 @@ text = "Shuffle"
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Card_Holders" type="Node" parent="."]
-
-[node name="Player_1_Card_1" type="Node2D" parent="Card_Holders"]
+[node name="Player_1_Card_1" type="Node2D" parent="."]
 position = Vector2(200, 500)
 
-[node name="Sprite2D" type="Sprite2D" parent="Card_Holders/Player_1_Card_1"]
+[node name="Sprite2D" type="Sprite2D" parent="Player_1_Card_1"]
 texture = ExtResource("3_v5jvv")
 
-[node name="Player_1_Card_2" type="Node2D" parent="Card_Holders"]
+[node name="Player_1_Card_2" type="Node2D" parent="."]
 position = Vector2(500, 500)
 
-[node name="Sprite2D" type="Sprite2D" parent="Card_Holders/Player_1_Card_2"]
+[node name="Sprite2D" type="Sprite2D" parent="Player_1_Card_2"]
 texture = ExtResource("4_1o3wq")
 
-[node name="Player_2_Card_1" type="Node2D" parent="Card_Holders"]
+[node name="Player_2_Card_1" type="Node2D" parent="."]
 position = Vector2(200, 200)
 
-[node name="Sprite2D" type="Sprite2D" parent="Card_Holders/Player_2_Card_1"]
+[node name="Sprite2D" type="Sprite2D" parent="Player_2_Card_1"]
 texture = ExtResource("5_l20ii")
 
-[node name="Player_2_Card_2" type="Node2D" parent="Card_Holders"]
+[node name="Player_2_Card_2" type="Node2D" parent="."]
 position = Vector2(500, 200)
 
-[node name="Sprite2D" type="Sprite2D" parent="Card_Holders/Player_2_Card_2"]
+[node name="Sprite2D" type="Sprite2D" parent="Player_2_Card_2"]
 texture = ExtResource("6_jnmty")
 
 [node name="Node2D2" type="Node2D" parent="."]
+
+[node name="GameStates" type="Node" parent="."]
+
+[node name="Game" type="Node" parent="GameStates"]
+script = ExtResource("6_v5jvv")
+metadata/_custom_type_script = "uid://ccgjmurtctj3"
+
+[node name="PlayerTurn" type="Node" parent="GameStates"]
+script = ExtResource("7_8skjy")
+metadata/_custom_type_script = "uid://brgsaeu8pjjn4"
+
+[node name="DealerTurn" type="Node" parent="GameStates"]
+script = ExtResource("8_ufhb6")
+metadata/_custom_type_script = "uid://rjifhhn6q1vr"
+
+[node name="Deal" type="Node" parent="GameStates"]
+script = ExtResource("9_5r4lc")
+metadata/_custom_type_script = "uid://bjfibqxmhqck5"
+
+[node name="Start" type="Node" parent="GameStates"]
+script = ExtResource("10_3hfb8")
+metadata/_custom_type_script = "uid://cahvi30p0vqjm"

@@ -1,7 +1,10 @@
 class_name GameState
-extends  Object
+extends  Node
 
 func enter_state():
+	pass
+	
+func execute():
 	pass
 	
 func exit_state():

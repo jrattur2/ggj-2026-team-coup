@@ -1,5 +1,5 @@
-class_name Player_Turn
-extends Node
+class_name PlayerTurn
+extends GameState
 
 func enter_state():
 	pass
