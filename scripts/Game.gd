@@ -7,15 +7,20 @@ var start: GameState
 var deal: GameState
 var player_turn: GameState
 var dealer_turn: GameState
+var evaluate: GameState
 
 var deck: Node2D
-var player_1_card_1: Node2D
-var player_1_card_2: Node2D
-var player_2_card_1: Node2D
-var player_2_card_2: Node2D
+var player_1_card_1: Node2D  # Player hand container
+var player_1_card_2: Node2D  # Unused, keeping for compatibility
+var player_2_card_1: Node2D  # Dealer hand container
+var player_2_card_2: Node2D  # Unused, keeping for compatibility
 
 var score_text: Label
 var player_turn_text: Label
+
+# Hand containers
+var player_hand: Node2D  # Player's hand
+var dealer_hand: Node2D  # Dealer's hand
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +34,20 @@ func _ready() -> void:
 	dealer_turn = get_node("/root/level/GameStates/DealerTurn")
 	dealer_turn.game = self
 	
+	# Evaluate state - create if it doesn't exist
+	if has_node("/root/level/GameStates/Evaluate"):
+		evaluate = get_node("/root/level/GameStates/Evaluate")
+		evaluate.game = self
+	else:
+		# Create Evaluate state node if it doesn't exist
+		var evaluate_node = Node.new()
+		evaluate_node.name = "Evaluate"
+		var evaluate_script = load("res://scripts/gamestates/evaluate.gd")
+		evaluate_node.set_script(evaluate_script)
+		get_node("/root/level/GameStates").add_child(evaluate_node)
+		evaluate = evaluate_node
+		evaluate.game = self
+	
 	score_text = get_node("/root/level/ScoreText")
 	player_turn_text = get_node("/root/level/PlayerTurnText")
 	
@@ -37,6 +56,10 @@ func _ready() -> void:
 	player_1_card_2 = get_node("/root/level/Player_1_Card_2")
 	player_2_card_1 = get_node("/root/level/Player_2_Card_1")
 	player_2_card_2 = get_node("/root/level/Player_2_Card_2")
+	
+	# Set up hand containers
+	player_hand = player_1_card_1
+	dealer_hand = player_2_card_1
 	
 	delete_children(deck)
 	delete_children(player_1_card_1)
@@ -56,7 +79,17 @@ func _ready() -> void:
 	button.pressed.connect(shuffle_deck.bind(deck))
 	
 	var deal_button: Button = get_node("/root/level/Deal_Button")
-	deal_button.pressed.connect(func(): update_state(deal))
+	deal_button.pressed.connect(_on_deal_pressed)
+	
+	var hit_button: Button = get_node("/root/level/Hit")
+	hit_button.pressed.connect(_on_hit_pressed)
+	
+	var stand_button: Button = get_node("/root/level/Stand")
+	stand_button.pressed.connect(_on_stand_pressed)
+	
+	# Disable buttons initially
+	hit_button.disabled = true
+	stand_button.disabled = true
 	
 	update_state(start)
 	pass # Replace with function body.
@@ -180,3 +213,52 @@ func calculate_hand_value(cards: Array) -> int:
 			non_ace_sum += 1
 	
 	return non_ace_sum
+
+# Get all cards from a hand container
+func get_hand_cards(hand_container: Node2D) -> Array:
+	var cards = []
+	for child in hand_container.get_children():
+		var card: Card = child as Card
+		if card != null:
+			cards.append(card)
+	return cards
+
+# Add a card to a hand and position it
+func add_card_to_hand(card: Card, hand_container: Node2D, face_up: bool = true):
+	card.face_up = face_up
+	move_card(card, deck, hand_container)
+	
+	# Position card based on number of cards in hand
+	var card_count = hand_container.get_child_count() - 1  # -1 because we just added it
+	var card_spacing = 80  # Space between cards
+	var start_x = 0
+	card.position.x = start_x + (card_count * card_spacing)
+	card.position.y = 0
+
+# Check if a hand has busted (over 21)
+func is_busted(cards: Array) -> bool:
+	return calculate_hand_value(cards) > 21
+
+# Check if a hand is blackjack (21 with exactly 2 cards)
+func is_blackjack(cards: Array) -> bool:
+	return cards.size() == 2 and calculate_hand_value(cards) == 21
+
+# Draw a card from the deck
+func draw_card() -> Card:
+	if deck.get_child_count() == 0:
+		print("Deck is empty!")
+		return null
+	return deck.get_children().back() as Card
+
+# Button handlers
+func _on_deal_pressed():
+	if game_state is Start or game_state is Evaluate:
+		update_state(deal)
+
+func _on_hit_pressed():
+	if game_state is PlayerTurn:
+		(game_state as PlayerTurn).on_hit()
+
+func _on_stand_pressed():
+	if game_state is PlayerTurn:
+		(game_state as PlayerTurn).on_stand()
