@@ -5,10 +5,8 @@ func enter_state():
 	game.player_turn_text.text = 'Player Turn, make a choice'
 	
 	# Enable action buttons
-	var hit_button: Button = get_node("/root/level/Hit")
-	var stand_button: Button = get_node("/root/level/Stand")
-	hit_button.disabled = false
-	stand_button.disabled = false
+	game.hit_button.disabled = false
+	game.stand_button.disabled = false
 	
 	update_display()
 	
@@ -23,10 +21,8 @@ func execute():
 	
 func exit_state():
 	# Disable action buttons
-	var hit_button: Button = get_node("/root/level/Hit")
-	var stand_button: Button = get_node("/root/level/Stand")
-	hit_button.disabled = true
-	stand_button.disabled = true
+	game.hit_button.disabled = true
+	game.stand_button.disabled = true
 	pass
 
 func update_display():

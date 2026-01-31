@@ -39,15 +39,11 @@ func enter_state():
 	game.score_text.text = "Player: " + str(player_value) + " | Dealer: " + str(dealer_value)
 	
 	# Disable action buttons
-	var hit_button: Button = get_node("/root/level/Hit")
-	var stand_button: Button = get_node("/root/level/Stand")
-	var deal_button: Button = get_node("/root/level/Deal_Button")
-	hit_button.disabled = true
-	stand_button.disabled = true
-	deal_button.disabled = false  # Re-enable deal button for new game
+	game.hit_button.disabled = true
+	game.stand_button.disabled = true
+	game.deal_button.disabled = false  # Re-enable deal button for new game
 	
 	pass
 
 func exit_state():
 	pass
-

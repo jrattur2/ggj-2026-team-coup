@@ -18,6 +18,12 @@ var player_2_card_2: Node2D  # Unused, keeping for compatibility
 var score_text: Label
 var player_turn_text: Label
 
+# UI Buttons
+var hit_button: Button
+var stand_button: Button
+var deal_button: Button
+var shuffle_button: Button
+
 # Hand containers
 var player_hand: Node2D  # Player's hand
 var dealer_hand: Node2D  # Dealer's hand
@@ -51,6 +57,12 @@ func _ready() -> void:
 	score_text = get_node("/root/level/ScoreText")
 	player_turn_text = get_node("/root/level/PlayerTurnText")
 	
+	# Initialize buttons
+	hit_button = get_node("/root/level/Hit")
+	stand_button = get_node("/root/level/Stand")
+	deal_button = get_node("/root/level/Deal_Button")
+	shuffle_button = get_node("/root/level/Shuffle_Button")
+	
 	deck = get_node("/root/level/Deck")
 	player_1_card_1 = get_node("/root/level/Player_1_Card_1")
 	player_1_card_2 = get_node("/root/level/Player_1_Card_2")
@@ -75,16 +87,9 @@ func _ready() -> void:
 			
 		deck.add_child(card)
 	
-	var button: Button = get_node('/root/level/Shuffle_Button')
-	button.pressed.connect(shuffle_deck.bind(deck))
-	
-	var deal_button: Button = get_node("/root/level/Deal_Button")
+	shuffle_button.pressed.connect(shuffle_deck.bind(deck))
 	deal_button.pressed.connect(_on_deal_pressed)
-	
-	var hit_button: Button = get_node("/root/level/Hit")
 	hit_button.pressed.connect(_on_hit_pressed)
-	
-	var stand_button: Button = get_node("/root/level/Stand")
 	stand_button.pressed.connect(_on_stand_pressed)
 	
 	# Disable buttons initially

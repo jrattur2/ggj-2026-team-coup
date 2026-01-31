@@ -3,8 +3,7 @@ extends GameState
 
 func enter_state():
 	# Disable deal button during game
-	var deal_button: Button = get_node("/root/level/Deal_Button")
-	deal_button.disabled = true
+	game.deal_button.disabled = true
 	
 	# Clear hands
 	game.delete_children(game.player_hand)
