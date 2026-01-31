@@ -8,6 +8,7 @@ var deal: GameState
 var player_turn: GameState
 var dealer_turn: GameState
 var evaluate: GameState
+var end_game: GameState
 
 var deck: Node2D
 var player_1_card_1: Node2D  # Player hand container
@@ -55,6 +56,20 @@ func _ready() -> void:
 		get_node("/root/level/GameStates").add_child(evaluate_node)
 		evaluate = evaluate_node
 		evaluate.game = self
+	
+	# EndGame state - create if it doesn't exist
+	if has_node("/root/level/GameStates/EndGame"):
+		end_game = get_node("/root/level/GameStates/EndGame")
+		end_game.game = self
+	else:
+		# Create EndGame state node if it doesn't exist
+		var end_game_node = Node.new()
+		end_game_node.name = "EndGame"
+		var end_game_script = load("res://scripts/gamestates/end_game.gd")
+		end_game_node.set_script(end_game_script)
+		get_node("/root/level/GameStates").add_child(end_game_node)
+		end_game = end_game_node
+		end_game.game = self
 	
 	score_text = get_node("/root/level/ScoreText")
 	player_turn_text = get_node("/root/level/PlayerTurnText")
@@ -279,7 +294,7 @@ func draw_card() -> Card:
 
 # Button handlers
 func _on_deal_pressed():
-	if game_state is Start or game_state is Evaluate:
+	if game_state is Start or game_state is Evaluate or game_state is EndGame:
 		update_state(deal)
 
 func _on_hit_pressed():

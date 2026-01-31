@@ -35,17 +35,14 @@ func enter_state():
 	else:
 		result_text = "Push (Tie)! " + str(player_value) + " vs " + str(dealer_value)
 	
-	game.player_turn_text.text = result_text
-	game.score_text.text = "Player: " + str(player_value) + " | Dealer: " + str(dealer_value)
+	# Store results in EndGame state before transitioning
+	var end_game_state: EndGame = game.end_game as EndGame
+	end_game_state.player_value = player_value
+	end_game_state.dealer_value = dealer_value
+	end_game_state.result_text = result_text
 	
-	# Disable action buttons
-	game.hit_button.disabled = true
-	game.stand_button.disabled = true
-	game.deal_button.disabled = false  # Re-enable deal button for new game
-	
-	# Wait a few seconds to show the result, then reset to Start state
-	await get_tree().create_timer(3.0).timeout
-	game.update_state(game.start)
+	# Transition to EndGame state to show final score
+	game.update_state(game.end_game)
 	
 	pass
 
