@@ -21,7 +21,7 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+text = "MENU_START"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -38,18 +38,39 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "日本語"
 
-[node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MENU_AUDIO_MASTER"
+
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "MENU_AUDIO_MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "MENU_AUDIO_SFX"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/EnButton" to="." method="_on_en_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/JaButton" to="." method="_on_ja_button_pressed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

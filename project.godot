@@ -14,6 +14,10 @@ config/name="Team-Coup"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Translations/translations.en.translation", "res://Translations/translations.ja.translation")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
