@@ -12,13 +12,7 @@ var current_language := GameLanguage.English
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	change_language(GameLanguage.English)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+	TranslationServer.set_locale("en")
 
 func change_language(new_language : GameLanguage):
 	if new_language == current_language:
