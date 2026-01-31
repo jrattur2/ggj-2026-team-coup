@@ -1,6 +1,7 @@
 class_name MainMenu extends Control
 
-const GAME_SCENE_UID := "TODO"
+signal on_main_menu_start_pressed()
+
 @onready var main_menu: MainMenu = $"."
 
 enum GameLanguage {
@@ -23,12 +24,7 @@ func change_language(new_language : GameLanguage):
 	current_language = new_language
 
 func _on_start_button_pressed() -> void:
-	var game_scene : PackedScene = load(GAME_SCENE_UID)
-	assert(game_scene, "failed to load game")
-	var loaded_scene := game_scene.instantiate()
-	assert(loaded_scene, "failed to instatiate scene")
-	get_tree().root.add_child(loaded_scene)
-	main_menu.hide()
+	on_main_menu_start_pressed.emit()
 
 
 func _on_en_button_pressed() -> void:
