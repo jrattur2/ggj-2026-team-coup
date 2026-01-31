@@ -7,6 +7,8 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var main_menu: MainMenu = $MainMenu
 @onready var ingame: Node = $Ingame
 @onready var reward_menu: PostsBattleMenu = $RewardMenu
+@onready var win_screen: Control = $WinScreen
+@onready var lose_screen: Control = $LoseScreen
 
 var player : PlayerInfo
 var current_battle: BattleLevel = null
@@ -14,6 +16,8 @@ var current_battle: BattleLevel = null
 func _ready() -> void:
 	main_menu.show()
 	reward_menu.hide()
+	win_screen.hide()
+	lose_screen.hide()
 	main_menu.on_main_menu_start_pressed.connect(_on_start_pressed)
 
 func _on_start_pressed():
@@ -46,14 +50,17 @@ func _on_battle_win(player_info: PlayerInfo):
 		node.queue_free()
 	
 	if enemies.is_empty():
-		print_debug("you win")
-	else:
-		reward_menu.on_reward_chosen.connect(_on_reward_chosen)
-		reward_menu.show()
+		win_screen.show()
+		return
+	
+	reward_menu.on_reward_chosen.connect(_on_reward_chosen)
+	reward_menu.show()
 
 func _on_battle_lose():
 	_disconnect_battle_signals(current_battle)
-	print_debug("you lose")
+	for node: Node in ingame.get_children():
+		node.queue_free()
+	lose_screen.show()
 
 func _connect_battle_signals(battle: BattleLevel):
 	battle.on_win.connect(_on_battle_win)

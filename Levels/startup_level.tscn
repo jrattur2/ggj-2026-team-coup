@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq40vjn0o7xfl"]
+[gd_scene load_steps=9 format=3 uid="uid://bq40vjn0o7xfl"]
 
 [ext_resource type="Script" uid="uid://bqh03admln047" path="res://Levels/startup_level.gd" id="1_l788o"]
 [ext_resource type="PackedScene" uid="uid://mabbruid8hy5" path="res://Menu/main-menu.tscn" id="1_r18fm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://beavtv02jelgd" path="res://Resources/Enemy/test_enemy.tres" id="3_2w55e"]
 [ext_resource type="Resource" uid="uid://bl838rgbidx8s" path="res://Resources/Enemy/test_enemy2.tres" id="4_sesdb"]
 [ext_resource type="PackedScene" uid="uid://b7ofdux6144l0" path="res://Menu/post_battle_menu.tscn" id="5_2w55e"]
+[ext_resource type="PackedScene" uid="uid://btv65mscyer4p" path="res://Menu/win_screen.tscn" id="7_vpdpk"]
+[ext_resource type="PackedScene" uid="uid://cesjx236ptpm1" path="res://Menu/lose_screen.tscn" id="8_ntmli"]
 
 [node name="StartupLevel" type="Node"]
 script = ExtResource("1_l788o")
@@ -16,4 +18,10 @@ enemies = Array[ExtResource("2_q50bm")]([ExtResource("3_2w55e"), ExtResource("4_
 [node name="MainMenu" parent="." instance=ExtResource("1_r18fm")]
 
 [node name="RewardMenu" parent="." instance=ExtResource("5_2w55e")]
+visible = false
+
+[node name="WinScreen" parent="." instance=ExtResource("7_vpdpk")]
+visible = false
+
+[node name="LoseScreen" parent="." instance=ExtResource("8_ntmli")]
 visible = false
