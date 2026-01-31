@@ -9,6 +9,7 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var reward_menu: PostsBattleMenu = $RewardMenu
 @onready var win_screen: Control = $WinScreen
 @onready var lose_screen: Control = $LoseScreen
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var player : PlayerInfo
 var current_battle: BattleLevel = null
