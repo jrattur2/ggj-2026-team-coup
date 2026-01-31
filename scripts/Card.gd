@@ -1,7 +1,7 @@
 class_name Card
 extends Sprite2D
 
-func _init(id: String, suit: String, rank: String, blackjack_rank: int, front_texture_file: String, rear_texture_file: String):
+func _init(id: String, suit: String, rank: String, blackjack_rank: Array[int], front_texture_file: String, rear_texture_file: String):
 	self.id = id
 	self.suit = suit
 	self.rank = rank
@@ -13,7 +13,7 @@ func _init(id: String, suit: String, rank: String, blackjack_rank: int, front_te
 var id: String
 var suit: String
 var rank: String
-var blackjack_rank: int
+var blackjack_rank: Array[int]
 var front_texture_file: String
 var rear_texture_file: String
 var face_up: bool
