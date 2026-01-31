@@ -34,33 +34,35 @@ func _ready() -> void:
 	# Randomize seed for each game session
 	randomize()
 	
-	start = get_node("/root/level/GameStates/Start")
+	var currentRoot: String = '/root/StartupLevel/Ingame/BattleLevel/'
+	
+	start = get_node(currentRoot + "GameStates/Start")
 	start.game = self
-	deal = get_node("/root/level/GameStates/Deal")
+	deal = get_node(currentRoot + "GameStates/Deal")
 	deal.game = self
-	player_turn = get_node("/root/level/GameStates/PlayerTurn")
+	player_turn = get_node(currentRoot + "GameStates/PlayerTurn")
 	player_turn.game = self
-	dealer_turn = get_node("/root/level/GameStates/DealerTurn")
+	dealer_turn = get_node(currentRoot + "GameStates/DealerTurn")
 	dealer_turn.game = self
-	evaluate = get_node("/root/level/GameStates/Evaluate")
+	evaluate = get_node(currentRoot + "GameStates/Evaluate")
 	evaluate.game = self
-	end_game = get_node("/root/level/GameStates/EndGame")
+	end_game = get_node(currentRoot + "GameStates/EndGame")
 	end_game.game = self
 	
-	score_text = get_node("/root/level/ScoreText")
-	player_turn_text = get_node("/root/level/PlayerTurnText")
+	score_text = get_node(currentRoot + "ScoreText")
+	player_turn_text = get_node(currentRoot + "PlayerTurnText")
 	
 	# Initialize buttons
-	hit_button = get_node("/root/level/Hit")
-	stand_button = get_node("/root/level/Stand")
-	deal_button = get_node("/root/level/Deal_Button")
-	shuffle_button = get_node("/root/level/Shuffle_Button")
+	hit_button = get_node(currentRoot + "Hit")
+	stand_button = get_node(currentRoot + "Stand")
+	deal_button = get_node(currentRoot + "Deal_Button")
+	shuffle_button = get_node(currentRoot + "Shuffle_Button")
 	
-	deck = get_node("/root/level/Deck")
-	player_1_card_1 = get_node("/root/level/Player_1_Card_1")
-	player_1_card_2 = get_node("/root/level/Player_1_Card_2")
-	player_2_card_1 = get_node("/root/level/Player_2_Card_1")
-	player_2_card_2 = get_node("/root/level/Player_2_Card_2")
+	deck = get_node(currentRoot + "Deck")
+	player_1_card_1 = get_node(currentRoot + "Player/Player_1_Card_1")
+	player_1_card_2 = get_node(currentRoot + "Player/Player_1_Card_2")
+	player_2_card_1 = get_node(currentRoot + "Enemy/Player_2_Card_1")
+	player_2_card_2 = get_node(currentRoot + "Enemy/Player_2_Card_2")
 	
 	# Set up hand containers
 	player_hand = player_1_card_1

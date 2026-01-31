@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Team-Coup"
-run/main_scene="uid://dbbpee7gvqk46"
+run/main_scene="uid://bq40vjn0o7xfl"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
