@@ -150,3 +150,33 @@ func move_card(card: Node, from: Node, to: Node):
 	from.remove_child(card)
 	to.add_child(card)
 	card.set_owner(to)  # Ensures the owner is set correctly
+
+# Calculate the best blackjack hand value from an array of Card nodes
+# Returns the highest valid value (<= 21) or the lowest value if all combinations bust
+func calculate_hand_value(cards: Array) -> int:
+	var non_ace_sum = 0
+	var ace_count = 0
+	
+	# First pass: sum non-Aces and count Aces
+	for card_node in cards:
+		var card: Card = card_node as Card
+		if card == null:
+			continue
+		
+		# If card has multiple values, it's an Ace
+		if card.blackjack_rank.size() > 1:
+			ace_count += 1
+		else:
+			# Non-Ace cards have a single value
+			non_ace_sum += card.blackjack_rank[0]
+	
+	# Handle Aces: use 11 if it won't bust, otherwise use 1
+	for i in range(ace_count):
+		# Try adding 11 first
+		if non_ace_sum + 11 <= 21:
+			non_ace_sum += 11
+		else:
+			# Use 1 to avoid busting
+			non_ace_sum += 1
+	
+	return non_ace_sum
