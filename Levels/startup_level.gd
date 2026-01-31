@@ -54,6 +54,11 @@ func _on_battle_win(player_info: PlayerInfo):
 		return
 	
 	reward_menu.on_reward_chosen.connect(_on_reward_chosen)
+	reward_menu.populate_rewards(
+		[
+			PostsBattleMenu.Reward.new(PostsBattleMenu.RewardType.Heal, 3)
+		]
+	)
 	reward_menu.show()
 
 func _on_battle_lose():
@@ -73,16 +78,25 @@ func _disconnect_battle_signals(battle: BattleLevel):
 		battle.on_lose.disconnect(_on_battle_lose)
 	current_battle = null
 
-
-func _on_reward_chosen(reward: String):
+## The passed reward will vary depending on type
+func _on_reward_chosen(reward: PostsBattleMenu.Reward):
 	reward_menu.hide()
 	if reward_menu.on_reward_chosen.is_connected(_on_reward_chosen):
 		reward_menu.on_reward_chosen.disconnect(_on_reward_chosen)
-	#TODO pass card instead of string?
-	if reward == "passive":
-		player.passive_modifiers.push_back(reward)
-	elif reward == "active":
-		player.extra_cards.push_back(reward)
+	
+	match reward.type:
+		PostsBattleMenu.RewardType.Heal:
+			assert(reward.value is int)
+			player.health += reward.value
+		PostsBattleMenu.RewardType.Passive:
+			#TODO change type
+			assert(reward.value is String)
+			player.passive_modifiers.push_back(reward.value)
+		PostsBattleMenu.RewardType.Active:
+			#TODO change type
+			assert(reward.value is String)
+			player.extra_cards.push_back(reward.value)
+	
 	var next_enemy: Enemy = enemies.pop_back()
 	assert(next_enemy)
 	_load_battle(BattleStartInfo.new(player, next_enemy))

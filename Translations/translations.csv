@@ -4,3 +4,6 @@ MENU_AUDIO_MASTER,Master,音量
 MENU_AUDIO_MUSIC,Music,音楽
 MENU_AUDIO_SFX,SFX,効果音
 REWARD_FINISH,Continue,次へ
+POST_BATTLE_TITLE,Choose your reward,報酬を選んで下さい
+REWARD_HEAL_NAME,Heal,回復
+REWARD_HEAL_EFFECT,Heal by {value},体力を{value}回復
