@@ -80,6 +80,8 @@ text = "MENU_AUDIO_MASTER"
 
 [node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4"]
 layout_mode = 2
@@ -90,6 +92,8 @@ text = "MENU_AUDIO_MUSIC"
 
 [node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4/VBoxContainer2"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4"]
 layout_mode = 2
@@ -100,6 +104,8 @@ text = "MENU_AUDIO_SFX"
 
 [node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4/VBoxContainer3"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/EnButton" to="." method="_on_en_button_pressed"]
