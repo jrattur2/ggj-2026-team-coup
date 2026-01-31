@@ -16,7 +16,7 @@ func execute():
 	# Check for automatic bust
 	var player_cards = game.get_hand_cards(game.player_hand)
 	if game.is_busted(player_cards):
-		game.update_state(game.evaluate)
+		game.update_state(game.dealer_show_cards)
 	pass
 	
 func exit_state():
@@ -48,7 +48,7 @@ func on_hit():
 	if game.is_busted(player_cards):
 		# Small delay to show the bust, then transition
 		await get_tree().create_timer(1.0).timeout
-		game.update_state(game.evaluate)
+		game.update_state(game.dealer_show_cards)
 
 func on_stand():
 	game.update_state(game.dealer_turn)

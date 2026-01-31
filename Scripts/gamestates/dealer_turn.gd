@@ -56,4 +56,4 @@ func process_dealer_turn():
 	
 	# Dealer is done, evaluate the game
 	await get_tree().create_timer(0.5).timeout
-	game.update_state(game.evaluate)
+	game.update_state(game.dealer_show_cards)
