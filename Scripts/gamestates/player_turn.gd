@@ -14,9 +14,9 @@ func enter_state():
 
 func execute():
 	# Check for automatic bust
-	var player_cards = game.get_hand_cards(game.player_hand)
-	if game.is_busted(player_cards):
-		game.update_state(game.evaluate)
+	#var player_cards = game.get_hand_cards(game.player_hand)
+	#if game.is_busted(player_cards):
+		#game.update_state(game.evaluate)
 	pass
 	
 func exit_state():
@@ -26,16 +26,21 @@ func exit_state():
 	pass
 
 func update_display():
-	var player_cards = game.get_hand_cards(game.player_hand)
-	var hand_value = game.calculate_hand_value(player_cards)
+	var hand_value = game.calculate_hand_value(game.player_hand)
 	
-	game.splay_cards(game.player_1_card_1)
-	game.splay_cards(game.player_2_card_1)
+	game.splay_cards(game.player_hand)
+	game.splay_cards(game.dealer_hand)
 	
-	if game.is_busted(player_cards):
-		game.score_text.text = 'BUST! ' + str(hand_value)
+	if game.calculate_hand_value(game.player_hand)[0] > 21:
+		game.score_text.text = 'BUST! ' + str(hand_value[0])
 	else:
-		game.score_text.text = 'You have ' + str(hand_value)
+		var player_score_min = str(game.calculate_hand_value(game.player_hand)[0])
+		var player_score_max = str(game.calculate_hand_value(game.player_hand)[1])
+	
+		if player_score_min == player_score_max:
+			game.score_text.text = 'You have ' + player_score_min
+		else:
+			game.score_text.text = 'You have ' + player_score_min + ' or ' + player_score_max
 
 func on_hit():
 	var new_card = game.draw_card()
@@ -48,12 +53,12 @@ func on_hit():
 	update_display()
 	
 	# Check for bust (will be handled in execute next frame)
-	var player_cards = game.get_hand_cards(game.player_hand)
-	if game.is_busted(player_cards):
-		print("Player busts!")
-		# Small delay to show the bust, then transition
-		await get_tree().create_timer(1.0).timeout
-		game.update_state(game.evaluate)
+	#var player_cards = game.get_hand_cards(game.player_hand)
+	#if game.is_busted(player_cards):
+		#print("Player busts!")
+		## Small delay to show the bust, then transition
+		#await get_tree().create_timer(1.0).timeout
+		#game.update_state(game.evaluate)
 
 func on_stand():
 	print("Player stands")

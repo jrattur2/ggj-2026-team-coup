@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ywwy2ltilu4v"]
+[gd_scene load_steps=18 format=3 uid="uid://ywwy2ltilu4v"]
 
 [ext_resource type="Script" uid="uid://c4grwdme2c13v" path="res://Levels/battle_level.gd" id="1_2r8sw"]
 [ext_resource type="Texture2D" uid="uid://cf8tp7bo0q7ev" path="res://icon.svg" id="2_ukqk2"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://5ygqlq5jwnbu" path="res://assets/external/Playing Cards/card-back1.png" id="14_orbqw"]
 [ext_resource type="Script" uid="uid://cdbf521spm1v5" path="res://Scripts/gamestates/build_deck.gd" id="14_xumr6"]
 [ext_resource type="Script" uid="uid://dcg7wtc3sspt8" path="res://Scripts/gamestates/clear_all_cards.gd" id="15_5sm0d"]
-[ext_resource type="Script" uid="uid://l340tvocrno2" path="res://Scripts/gamestates/dealer_deciding.gd" id="16_oye3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ukqk2"]
 font_size = 48
@@ -165,10 +164,6 @@ metadata/_custom_type_script = "uid://cdbf521spm1v5"
 [node name="ClearAllCards" type="Node" parent="GameStates"]
 script = ExtResource("15_5sm0d")
 metadata/_custom_type_script = "uid://dcg7wtc3sspt8"
-
-[node name="DealerDeciding" type="Node" parent="GameStates"]
-script = ExtResource("16_oye3g")
-metadata/_custom_type_script = "uid://l340tvocrno2"
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(700, 500)

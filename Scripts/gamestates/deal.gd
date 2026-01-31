@@ -1,13 +1,9 @@
 class_name Deal
 extends GameState
 
+var timer
+
 func enter_state():
-	# Disable deal button during game
-	game.deal_button.disabled = true
-	
-	# Clear hands
-	game.delete_children(game.player_hand)
-	game.delete_children(game.dealer_hand)
 	
 	# Deal initial cards: Player, Dealer, Player, Dealer
 	var card1: Card = game.draw_card()
@@ -26,8 +22,14 @@ func enter_state():
 	game.add_card_to_hand(card4, game.dealer_hand, false)  # Dealer's second card is face down
 	print("Dealer dealt: " + card4.rank + " of " + card4.suit + " (face down)")
 	
-	game.update_state(game.player_turn)
+	game.splay_cards(game.player_1_card_1)
+	game.splay_cards(game.player_2_card_1)
 	
+	pass
+	
+func execute():
+	if game.game_state == game.deal:
+		game.update_state(game.player_turn)
 	pass
 	
 func exit_state():
