@@ -30,6 +30,8 @@ var dealer_hand: Node2D  # Dealer's hand
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Randomize seed for each game session
+	randomize()
 	
 	start = get_node("/root/level/GameStates/Start")
 	start.game = self
@@ -114,6 +116,26 @@ func update_state(new_state: GameState):
 func delete_children(node: Node):
 	for child in node.get_children():
 		child.queue_free()
+
+# Reset the game: clear hands, rebuild and shuffle deck
+func reset_game():
+	# Clear all hands
+	delete_children(player_hand)
+	delete_children(dealer_hand)
+	delete_children(player_1_card_2)
+	delete_children(player_2_card_2)
+	
+	# Clear and rebuild deck
+	delete_children(deck)
+	for card in build_deck():
+		card.face_up = false
+		card.name = card.rank + '-' + card.suit
+		card.position.x = 0
+		card.position.y = 0
+		deck.add_child(card)
+	
+	# Shuffle the deck
+	shuffle_deck(deck)
 
 func build_deck():
 	

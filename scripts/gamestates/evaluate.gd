@@ -43,6 +43,10 @@ func enter_state():
 	game.stand_button.disabled = true
 	game.deal_button.disabled = false  # Re-enable deal button for new game
 	
+	# Wait a few seconds to show the result, then reset to Start state
+	await get_tree().create_timer(3.0).timeout
+	game.update_state(game.start)
+	
 	pass
 
 func exit_state():
