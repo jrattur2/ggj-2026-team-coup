@@ -25,6 +25,20 @@ offset_right = 1040.0
 offset_bottom = 469.0
 text = "Deal"
 
+[node name="Hit" type="Button" parent="."]
+offset_left = 245.0
+offset_top = 642.0
+offset_right = 308.0
+offset_bottom = 673.0
+text = "Hit"
+
+[node name="Stand" type="Button" parent="."]
+offset_left = 430.0
+offset_top = 646.0
+offset_right = 493.0
+offset_bottom = 677.0
+text = "Stand"
+
 [node name="Shuffle_Button" type="Button" parent="."]
 offset_left = 956.0
 offset_top = 539.0
@@ -37,13 +51,13 @@ text = "Shuffle"
 [node name="Card_Holders" type="Node" parent="."]
 
 [node name="Player_1_Card_1" type="Node2D" parent="Card_Holders"]
-position = Vector2(200, 600)
+position = Vector2(200, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="Card_Holders/Player_1_Card_1"]
 texture = ExtResource("3_v5jvv")
 
 [node name="Player_1_Card_2" type="Node2D" parent="Card_Holders"]
-position = Vector2(500, 600)
+position = Vector2(500, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="Card_Holders/Player_1_Card_2"]
 texture = ExtResource("4_1o3wq")

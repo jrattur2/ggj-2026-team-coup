@@ -1,44 +1,6 @@
 extends Node
-const Card = preload("res://scripts/Card.gd")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	
-	print("Loading cards...")
-	
-	var game_deck = get_node("/root/Game/Deck")
-	delete_children(game_deck)
-	
-	var deck = build_deck();
-	
-	for card in deck:
-		card.face_up = false
-		card.name = card.rank + '-' + card.suit
-		card.position.x = 0
-		card.position.y = 0
-			
-		game_deck.add_child(card)
-
-	shuffle_deck(game_deck)
-
-	var button: Button = get_node('/root/Game/Shuffle_Button')
-	button.pressed.connect(shuffle_deck.bind(game_deck))
-
-	var player1_card1_holder = get_node("/root/Game/Card_Holders/Player_1_Card_1")
-	var player1_card2_holder = get_node("/root/Game/Card_Holders/Player_1_Card_2")
-	var player2_card1_holder = get_node("/root/Game/Card_Holders/Player_2_Card_1")
-	var player2_card2_holder = get_node("/root/Game/Card_Holders/Player_2_Card_2")
-
-	delete_children(player1_card1_holder)
-	delete_children(player1_card2_holder)
-	delete_children(player2_card1_holder)
-	delete_children(player2_card2_holder)
-
-	var deal_button: Button = get_node("/root/Game/Deal_Button")
-	deal_button.pressed.connect(deal.bind(game_deck, get_node("/root/Game/Card_Holders")))
-	
-
-func build_deck():
+func load_deck():
 	
 	var deck = [];
 	# SPADES
@@ -103,54 +65,12 @@ func build_deck():
 
 	return deck
 
-func delete_children(node: Node):
-	for child in node.get_children():
-		child.queue_free()
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
 
-func deal(deck: Node, card_holders: Node):
-	
-	var card1: Card = deck.get_children().back();
-	move_card(card1 ,deck, card_holders.get_child(0))
-	card1.face_up = true
-	
-	var card2: Card = deck.get_children().back();
-	move_card(deck.get_children().back(),deck, card_holders.get_child(2))
-	card2.face_up = true
-	
-	var card3: Card = deck.get_children().back();
-	move_card(deck.get_children().back(),deck, card_holders.get_child(1))
-	card3.face_up = true
-	
-	var card4: Card = deck.get_children().back();
-	move_card(deck.get_children().back(),deck, card_holders.get_child(3))
-	card4.face_up = false
-
-func move_card(card: Node, from: Node, to: Node):
-	from.remove_child(card)
-	to.add_child(card)
-	card.set_owner(to)  # Ensures the owner is set correctly
-
-func shuffle_deck(deck: Node):
-	for card in deck.get_children():
-		deck.move_child(card, randi_range(0, deck.get_children().size()))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
