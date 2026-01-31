@@ -1,0 +1,65 @@
+deck:
+  name: "Standard 52 Card Deck"
+  suits: [hearts, diamonds, clubs, spades]
+
+  cards:
+
+	# Hearts
+	- {id: H-A, suit: hearts, rank: Ace, short_rank: A, value: 1, blackjack_value: 11, color: red, sprite_front: "sprites/cards/hearts_A.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-2, suit: hearts, rank: "2", short_rank: "2", value: 2, blackjack_value: 2, color: red, sprite_front: "sprites/cards/hearts_2.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-3, suit: hearts, rank: "3", short_rank: "3", value: 3, blackjack_value: 3, color: red, sprite_front: "sprites/cards/hearts_3.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-4, suit: hearts, rank: "4", short_rank: "4", value: 4, blackjack_value: 4, color: red, sprite_front: "sprites/cards/hearts_4.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-5, suit: hearts, rank: "5", short_rank: "5", value: 5, blackjack_value: 5, color: red, sprite_front: "sprites/cards/hearts_5.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-6, suit: hearts, rank: "6", short_rank: "6", value: 6, blackjack_value: 6, color: red, sprite_front: "sprites/cards/hearts_6.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-7, suit: hearts, rank: "7", short_rank: "7", value: 7, blackjack_value: 7, color: red, sprite_front: "sprites/cards/hearts_7.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-8, suit: hearts, rank: "8", short_rank: "8", value: 8, blackjack_value: 8, color: red, sprite_front: "sprites/cards/hearts_8.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-9, suit: hearts, rank: "9", short_rank: "9", value: 9, blackjack_value: 9, color: red, sprite_front: "sprites/cards/hearts_9.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-10, suit: hearts, rank: "10", short_rank: "10", value: 10, blackjack_value: 10, color: red, sprite_front: "sprites/cards/hearts_10.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-J, suit: hearts, rank: Jack, short_rank: J, value: 11, blackjack_value: 10, color: red, sprite_front: "sprites/cards/hearts_J.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-Q, suit: hearts, rank: Queen, short_rank: Q, value: 12, blackjack_value: 10, color: red, sprite_front: "sprites/cards/hearts_Q.png", sprite_back: "sprites/cards/back.png"}
+	- {id: H-K, suit: hearts, rank: King, short_rank: K, value: 13, blackjack_value: 10, color: red, sprite_front: "sprites/cards/hearts_K.png", sprite_back: "sprites/cards/back.png"}
+
+	# Diamonds
+	- {id: D-A, suit: diamonds, rank: Ace, short_rank: A, value: 1, blackjack_value: 11, color: red, sprite_front: "sprites/cards/diamonds_A.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-2, suit: diamonds, rank: "2", short_rank: "2", value: 2, blackjack_value: 2, color: red, sprite_front: "sprites/cards/diamonds_2.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-3, suit: diamonds, rank: "3", short_rank: "3", value: 3, blackjack_value: 3, color: red, sprite_front: "sprites/cards/diamonds_3.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-4, suit: diamonds, rank: "4", short_rank: "4", value: 4, blackjack_value: 4, color: red, sprite_front: "sprites/cards/diamonds_4.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-5, suit: diamonds, rank: "5", short_rank: "5", value: 5, blackjack_value: 5, color: red, sprite_front: "sprites/cards/diamonds_5.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-6, suit: diamonds, rank: "6", short_rank: "6", value: 6, blackjack_value: 6, color: red, sprite_front: "sprites/cards/diamonds_6.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-7, suit: diamonds, rank: "7", short_rank: "7", value: 7, blackjack_value: 7, color: red, sprite_front: "sprites/cards/diamonds_7.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-8, suit: diamonds, rank: "8", short_rank: "8", value: 8, blackjack_value: 8, color: red, sprite_front: "sprites/cards/diamonds_8.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-9, suit: diamonds, rank: "9", short_rank: "9", value: 9, blackjack_value: 9, color: red, sprite_front: "sprites/cards/diamonds_9.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-10, suit: diamonds, rank: "10", short_rank: "10", value: 10, blackjack_value: 10, color: red, sprite_front: "sprites/cards/diamonds_10.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-J, suit: diamonds, rank: Jack, short_rank: J, value: 11, blackjack_value: 10, color: red, sprite_front: "sprites/cards/diamonds_J.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-Q, suit: diamonds, rank: Queen, short_rank: Q, value: 12, blackjack_value: 10, color: red, sprite_front: "sprites/cards/diamonds_Q.png", sprite_back: "sprites/cards/back.png"}
+	- {id: D-K, suit: diamonds, rank: King, short_rank: K, value: 13, blackjack_value: 10, color: red, sprite_front: "sprites/cards/diamonds_K.png", sprite_back: "sprites/cards/back.png"}
+
+	# Clubs
+	- {id: C-A, suit: clubs, rank: Ace, short_rank: A, value: 1, blackjack_value: 11, color: black, sprite_front: "sprites/cards/clubs_A.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-2, suit: clubs, rank: "2", short_rank: "2", value: 2, blackjack_value: 2, color: black, sprite_front: "sprites/cards/clubs_2.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-3, suit: clubs, rank: "3", short_rank: "3", value: 3, blackjack_value: 3, color: black, sprite_front: "sprites/cards/clubs_3.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-4, suit: clubs, rank: "4", short_rank: "4", value: 4, blackjack_value: 4, color: black, sprite_front: "sprites/cards/clubs_4.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-5, suit: clubs, rank: "5", short_rank: "5", value: 5, blackjack_value: 5, color: black, sprite_front: "sprites/cards/clubs_5.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-6, suit: clubs, rank: "6", short_rank: "6", value: 6, blackjack_value: 6, color: black, sprite_front: "sprites/cards/clubs_6.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-7, suit: clubs, rank: "7", short_rank: "7", value: 7, blackjack_value: 7, color: black, sprite_front: "sprites/cards/clubs_7.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-8, suit: clubs, rank: "8", short_rank: "8", value: 8, blackjack_value: 8, color: black, sprite_front: "sprites/cards/clubs_8.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-9, suit: clubs, rank: "9", short_rank: "9", value: 9, blackjack_value: 9, color: black, sprite_front: "sprites/cards/clubs_9.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-10, suit: clubs, rank: "10", short_rank: "10", value: 10, blackjack_value: 10, color: black, sprite_front: "sprites/cards/clubs_10.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-J, suit: clubs, rank: Jack, short_rank: J, value: 11, blackjack_value: 10, color: black, sprite_front: "sprites/cards/clubs_J.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-Q, suit: clubs, rank: Queen, short_rank: Q, value: 12, blackjack_value: 10, color: black, sprite_front: "sprites/cards/clubs_Q.png", sprite_back: "sprites/cards/back.png"}
+	- {id: C-K, suit: clubs, rank: King, short_rank: K, value: 13, blackjack_value: 10, color: black, sprite_front: "sprites/cards/clubs_K.png", sprite_back: "sprites/cards/back.png"}
+
+	# Spades
+	- {id: S-A, suit: spades, rank: Ace, short_rank: A, value: 1, blackjack_value: 11, color: black, sprite_front: "sprites/cards/spades_A.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-2, suit: spades, rank: "2", short_rank: "2", value: 2, blackjack_value: 2, color: black, sprite_front: "sprites/cards/spades_2.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-3, suit: spades, rank: "3", short_rank: "3", value: 3, blackjack_value: 3, color: black, sprite_front: "sprites/cards/spades_3.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-4, suit: spades, rank: "4", short_rank: "4", value: 4, blackjack_value: 4, color: black, sprite_front: "sprites/cards/spades_4.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-5, suit: spades, rank: "5", short_rank: "5", value: 5, blackjack_value: 5, color: black, sprite_front: "sprites/cards/spades_5.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-6, suit: spades, rank: "6", short_rank: "6", value: 6, blackjack_value: 6, color: black, sprite_front: "sprites/cards/spades_6.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-7, suit: spades, rank: "7", short_rank: "7", value: 7, blackjack_value: 7, color: black, sprite_front: "sprites/cards/spades_7.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-8, suit: spades, rank: "8", short_rank: "8", value: 8, blackjack_value: 8, color: black, sprite_front: "sprites/cards/spades_8.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-9, suit: spades, rank: "9", short_rank: "9", value: 9, blackjack_value: 9, color: black, sprite_front: "sprites/cards/spades_9.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-10, suit: spades, rank: "10", short_rank: "10", value: 10, blackjack_value: 10, color: black, sprite_front: "sprites/cards/spades_10.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-J, suit: spades, rank: Jack, short_rank: J, value: 11, blackjack_value: 10, color: black, sprite_front: "sprites/cards/spades_J.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-Q, suit: spades, rank: Queen, short_rank: Q, value: 12, blackjack_value: 10, color: black, sprite_front: "sprites/cards/spades_Q.png", sprite_back: "sprites/cards/back.png"}
+	- {id: S-K, suit: spades, rank: King, short_rank: K, value: 13, blackjack_value: 10, color: black, sprite_front: "sprites/cards/spades_K.png", sprite_back: "sprites/cards/back.png"}
