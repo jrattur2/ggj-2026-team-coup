@@ -19,4 +19,7 @@ func enter_state():
 	pass
 
 func exit_state():
+	
+	game.initialise_cards()
+	
 	pass

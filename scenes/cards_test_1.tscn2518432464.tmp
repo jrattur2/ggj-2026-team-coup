@@ -99,7 +99,7 @@ metadata/_custom_type_script = "uid://bjfibqxmhqck5"
 script = ExtResource("10_3hfb8")
 metadata/_custom_type_script = "uid://cahvi30p0vqjm"
 
-[node name="Evaluate" type="Node" parent="GameStates"]
+[node name="DealerShowCards" type="Node" parent="GameStates"]
 script = ExtResource("11_5r4lc")
 metadata/_custom_type_script = "uid://d1omv8clm8015"
 

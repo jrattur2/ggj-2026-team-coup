@@ -7,7 +7,7 @@ var start: GameState
 var deal: GameState
 var player_turn: GameState
 var dealer_turn: GameState
-var dealer_show_cards: GameState
+var evaluate: GameState
 var end_game: GameState
 
 var deck: Node2D
@@ -42,9 +42,9 @@ func _ready() -> void:
 	player_turn.game = self
 	dealer_turn = get_node("/root/level/GameStates/DealerTurn")
 	dealer_turn.game = self
-	dealer_show_cards = get_node("/root/level/GameStates/DealerTurn")
-	dealer_show_cards.game = self
-	end_game = get_node("/root/level/GameStates/DealerTurn")
+	evaluate = get_node("/root/level/GameStates/Evaluate")
+	evaluate.game = self
+	end_game = get_node("/root/level/GameStates/EndGame")
 	end_game.game = self
 	
 	score_text = get_node("/root/level/ScoreText")
@@ -66,6 +66,21 @@ func _ready() -> void:
 	player_hand = player_1_card_1
 	dealer_hand = player_2_card_1
 	
+	shuffle_button.pressed.connect(shuffle_deck.bind(deck))
+	deal_button.pressed.connect(_on_deal_pressed)
+	hit_button.pressed.connect(_on_hit_pressed)
+	stand_button.pressed.connect(_on_stand_pressed)
+	
+	# Disable buttons initially
+	hit_button.disabled = true
+	stand_button.disabled = true
+	
+	initialise_cards()
+	
+	update_state(start)
+	pass # Replace with function body.
+
+func initialise_cards():
 	delete_children(deck)
 	delete_children(player_1_card_1)
 	delete_children(player_1_card_2)
@@ -80,17 +95,6 @@ func _ready() -> void:
 			
 		deck.add_child(card)
 	
-	shuffle_button.pressed.connect(shuffle_deck.bind(deck))
-	deal_button.pressed.connect(_on_deal_pressed)
-	hit_button.pressed.connect(_on_hit_pressed)
-	stand_button.pressed.connect(_on_stand_pressed)
-	
-	# Disable buttons initially
-	hit_button.disabled = true
-	stand_button.disabled = true
-	
-	update_state(start)
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -270,7 +274,7 @@ func draw_card() -> Card:
 
 # Button handlers
 func _on_deal_pressed():
-	if game_state is Start or game_state is DealerShowCards or game_state is EndGame:
+	if game_state is Start or game_state is Evaluate or game_state is EndGame:
 		update_state(deal)
 
 func _on_hit_pressed():

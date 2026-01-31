@@ -1,4 +1,4 @@
-class_name DealerShowCards
+class_name Evaluate
 extends GameState
 
 func enter_state():
