@@ -1,8 +1,6 @@
 class_name Deal
 extends GameState
 
-var game: Game
-
 func enter_state():
 	
 	var card1: Card = game.deck.get_children().back();

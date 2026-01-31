@@ -1,8 +1,6 @@
 class_name Start
 extends GameState
 
-var game: Game
-
 func enter_state():
 	pass
 	

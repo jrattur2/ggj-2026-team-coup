@@ -96,3 +96,17 @@ metadata/_custom_type_script = "uid://bjfibqxmhqck5"
 [node name="Start" type="Node" parent="GameStates"]
 script = ExtResource("10_3hfb8")
 metadata/_custom_type_script = "uid://cahvi30p0vqjm"
+
+[node name="ScoreText" type="Label" parent="."]
+offset_left = 585.0
+offset_top = 651.0
+offset_right = 717.0
+offset_bottom = 674.0
+text = "You have 6 or 16"
+
+[node name="PlayerTurnText" type="Label" parent="."]
+offset_left = 285.0
+offset_top = 338.0
+offset_right = 417.0
+offset_bottom = 361.0
+text = "Player Turn"

@@ -14,14 +14,23 @@ var player_1_card_2: Node2D
 var player_2_card_1: Node2D
 var player_2_card_2: Node2D
 
+var score_text: Label
+var player_turn_text: Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	start = get_node("/root/level/GameStates/Start")
+	start.game = self
 	deal = get_node("/root/level/GameStates/Deal")
 	deal.game = self
 	player_turn = get_node("/root/level/GameStates/PlayerTurn")
+	player_turn.game = self
 	dealer_turn = get_node("/root/level/GameStates/DealerTurn")
+	dealer_turn.game = self
+	
+	score_text = get_node("/root/level/ScoreText")
+	player_turn_text = get_node("/root/level/PlayerTurnText")
 	
 	deck = get_node("/root/level/Deck")
 	player_1_card_1 = get_node("/root/level/Player_1_Card_1")

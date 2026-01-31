@@ -1,6 +1,8 @@
 class_name GameState
 extends  Node
 
+var game: Game
+
 func enter_state():
 	pass
 	
