@@ -26,9 +26,13 @@ var player_turn_text: Label
 @onready var deal_button: Button = %DealButton
 
 
+
 # Hand containers
 @onready var player_hand: Node2D = %Player_1_Card_1
 @onready var dealer_hand: Node2D = %Player_2_Card_1
+
+@onready var player_modifier_hand: Node2D = %PlayerModifierHand
+@onready var player_active_modifiers: Node2D = %ActivePlayerModifiers
 
 var player_health = 100;
 var dealer_health = 100;
@@ -73,12 +77,22 @@ func _ready() -> void:
 	hit_button.disabled = true
 	stand_button.disabled = true
 	
+	for modifier: Modifier in get_tree().get_nodes_in_group("modifiers"):
+		modifier.pressed.connect(_on_modifier_pressed.bind(modifier))
+	
 	update_state(start)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	game_state.execute()
+	
+	if player_active_modifiers != null:
+		for modifier: Modifier in player_active_modifiers.get_children():
+			if modifier is RestoreHealth:
+				player_restore_health(100-player_health)
+				modifier.queue_free()
+
 	pass
 
 func update_state(new_state: GameState):
@@ -150,6 +164,14 @@ func _on_stand_pressed():
 	if game_state is PlayerTurn:
 		(game_state as PlayerTurn).on_stand()
 
+func _on_modifier_pressed(modifier: Modifier):
+	print('_on_modifier_click')
+	if modifier.get_parent() == player_modifier_hand:
+		player_modifier_hand.remove_child(modifier)
+		player_active_modifiers.add_child(modifier, true)
+		modifier.set_owner(player_active_modifiers)  # Ensures the owner is set correctly
+
+
 func update_player_score_text(text: String):
 	player_score_text = text;
 	print(player_score_text)
@@ -179,3 +201,13 @@ func player_take_damage(damage: int):
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
 	if player_health <= 0:
 		battle_level.on_lose.emit()
+		
+func dealer_restore_health(damage: int):
+	dealer_health += damage
+	print('Dealer restores ' + str(damage) + ' health!')
+	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+
+func player_restore_health(damage: int):
+	player_health += damage
+	print('Player restores ' + str(damage) + ' health!')
+	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
