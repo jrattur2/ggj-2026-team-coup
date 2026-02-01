@@ -298,7 +298,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_42l40")
 }],
-"loop": true,
+"loop": false,
 "name": &"dog_mask_destroy",
 "speed": 8.0
 }, {
@@ -378,7 +378,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_htdei")
 }],
-"loop": true,
+"loop": false,
 "name": &"frog_mask_destroy",
 "speed": 8.0
 }]
@@ -408,22 +408,25 @@ grow_vertical = 2
 [node name="EnemyVisual" type="Node2D" parent="Enemy"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy/EnemyVisual"]
+unique_name_in_owner = true
 visible = false
 z_index = 2
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_baver")
-animation = &"frog_mask_destroy"
+animation = &"dog_mask_destroy"
 
 [node name="Body" type="Sprite2D" parent="Enemy/EnemyVisual"]
 texture = ExtResource("3_oye3g")
 
 [node name="FrogHead" type="Sprite2D" parent="Enemy/EnemyVisual"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(0, 100)
 scale = Vector2(5, 5)
 texture = ExtResource("2_5sm0d")
 
 [node name="DogHead" type="Sprite2D" parent="Enemy/EnemyVisual"]
+unique_name_in_owner = true
 texture = ExtResource("4_qk7ls")
 
 [node name="EnemyHPLabel" type="Label" parent="Enemy"]

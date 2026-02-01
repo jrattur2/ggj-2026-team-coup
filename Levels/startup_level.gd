@@ -12,6 +12,7 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var title_bg: TextureRect = %TitleBG
 @onready var battle_bg: TextureRect = %BattleBG
 @onready var music_player: AudioStreamPlayer = %MusicPlayer
+@onready var restart_button: Button = %RestartButton
 
 var player : PlayerInfo
 var current_battle: BattleLevel = null
@@ -23,6 +24,8 @@ func _ready() -> void:
 	lose_screen.hide()
 	battle_bg.hide()
 	title_bg.show()
+	restart_button.hide()
+	
 	main_menu.on_main_menu_start_pressed.connect(_on_start_pressed)
 
 func _on_start_pressed():
@@ -61,6 +64,7 @@ func _on_battle_win(player_info: PlayerInfo):
 	
 	if enemies.is_empty():
 		win_screen.show()
+		restart_button.show()
 		return
 	
 	reward_menu.on_reward_chosen.connect(_on_reward_chosen)
@@ -76,6 +80,7 @@ func _on_battle_lose():
 	for node: Node in ingame.get_children():
 		node.queue_free()
 	lose_screen.show()
+	restart_button.show()
 
 func _connect_battle_signals(battle: BattleLevel):
 	battle.on_win.connect(_on_battle_win)
@@ -115,3 +120,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("dev_exit"):
 			get_tree().quit()
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()
