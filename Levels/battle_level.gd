@@ -15,6 +15,11 @@ signal on_lose()
 @onready var enemy_head: Sprite2D = %EnemyHead
 @onready var game: Game = $GameStates/Game
 
+@onready var hit_sfx: AudioStreamPlayer = %HitSfx
+@onready var break_sfx: AudioStreamPlayer = %BreakSfx
+@onready var take_damage_sfx: AudioStreamPlayer = %TakeDamageSfx
+@onready var enemy_dead_sfx: AudioStreamPlayer = %EnemyDeadSfx
+
 var sprite_default: Texture2D
 var sprite_damage1: Texture2D
 var sprite_damage2: Texture2D
@@ -36,15 +41,21 @@ func init_battle(info: BattleStartInfo):
 
 func update_damage_visual(health: int):
 	print_debug("updating visual")
-
+	
 	if health <= 0:
 		animated_sprite_2d.show()
+		
+		break_sfx.play()
+		enemy_dead_sfx.play()
+
 		enemy_head.texture = sprite_inside
 		if !animated_sprite_2d.animation_finished.is_connected(_destoy_anim_finished):
 			animated_sprite_2d.animation_finished.connect(_destoy_anim_finished)
 		animated_sprite_2d.play(destro_anim_name)
 		return
-		
+	
+	hit_sfx.play()
+	
 	if health < 30:
 		enemy_head.texture = sprite_damage2
 		return
@@ -59,10 +70,7 @@ func _deal_damage():
 
 # player takes damage
 func _take_damage():
-	player_info.health -= 1
-	_update_health_label(player_info.health, player_info.max_health, %PlayerHPLabel)
-	if player_info.health <= 0:
-		on_lose.emit()
+	game.player_take_damage(13)
 
 func _destoy_anim_finished():
 	on_win.emit(player_info)

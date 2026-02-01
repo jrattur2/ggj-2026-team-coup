@@ -14,6 +14,8 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var music_player: AudioStreamPlayer = %MusicPlayer
 @onready var restart_button: Button = %RestartButton
 
+const MASK_OFF_GAME_OVER = preload("uid://brtjjqyn5tb3p")
+
 var mouse_sprites: Array[String] = [
 	"res://assets/enemies/mouse/cracked_lat_mask_1.png",
 	"res://assets/enemies/mouse/cracked_lat_mask_2.png",
@@ -122,6 +124,9 @@ func _on_battle_lose():
 	for node: Node in ingame.get_children():
 		node.queue_free()
 	lose_screen.show()
+	music_player.stop()
+	music_player.stream = MASK_OFF_GAME_OVER
+	music_player.play()
 	restart_button.show()
 
 func _connect_battle_signals(battle: BattleLevel):

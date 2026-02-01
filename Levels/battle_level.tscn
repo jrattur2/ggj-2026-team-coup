@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://ywwy2ltilu4v"]
+[gd_scene load_steps=101 format=3 uid="uid://ywwy2ltilu4v"]
 
 [ext_resource type="Script" uid="uid://c4grwdme2c13v" path="res://Levels/battle_level.gd" id="1_2r8sw"]
 [ext_resource type="Texture2D" uid="uid://bdxt6pxl5m4xx" path="res://assets/enemies/dog/broken_dog_mask.png" id="2_qk7ls"]
@@ -19,6 +19,10 @@
 [ext_resource type="Script" uid="uid://dcg7wtc3sspt8" path="res://Scripts/gamestates/clear_all_cards.gd" id="15_5sm0d"]
 [ext_resource type="Texture2D" uid="uid://cj5jny822d3hb" path="res://assets/cards/deck.png" id="15_xumr6"]
 [ext_resource type="Script" uid="uid://l340tvocrno2" path="res://Scripts/gamestates/dealer_deciding.gd" id="16_oye3g"]
+[ext_resource type="AudioStream" uid="uid://dmin5m5x4nlij" path="res://assets/sfx/GGJ Card GameAttacking Enemy.mp3" id="20_758gj"]
+[ext_resource type="AudioStream" uid="uid://ddd7ibeslifla" path="res://assets/sfx/sfx2.wav" id="21_co7th"]
+[ext_resource type="AudioStream" uid="uid://cl5bjs4boq04i" path="res://assets/sfx/GGJ Card GameBroken Mask.mp3" id="21_v5gh4"]
+[ext_resource type="AudioStream" uid="uid://b714fndi2eelp" path="res://assets/sfx/GGJ Card GameEnemy Attack.mp3" id="22_co7th"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15kul"]
 atlas = ExtResource("2_qk7ls")
@@ -791,3 +795,25 @@ unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 texture = ExtResource("15_xumr6")
+
+[node name="SFXPlayers" type="Node" parent="."]
+
+[node name="HitSfx" type="AudioStreamPlayer" parent="SFXPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("20_758gj")
+bus = &"SFX"
+
+[node name="EnemyDeadSfx" type="AudioStreamPlayer" parent="SFXPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("21_co7th")
+bus = &"SFX"
+
+[node name="BreakSfx" type="AudioStreamPlayer" parent="SFXPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("21_v5gh4")
+bus = &"SFX"
+
+[node name="TakeDamageSfx" type="AudioStreamPlayer" parent="SFXPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("22_co7th")
+bus = &"SFX"
