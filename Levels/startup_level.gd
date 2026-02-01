@@ -15,12 +15,11 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var restart_button: Button = %RestartButton
 
 var mouse_sprites: Array[String] = [
-	#TODO MOUSE
-	"res://assets/enemies/dog/cracked_dog_mask_1.png",
-	"res://assets/enemies/dog/cracked_dog_mask_2.png",
-	"res://assets/enemies/dog/dog_inside.png",
-	"res://assets/enemies/dog/dog_mask.png",
-	"dog_mask_destroy"
+	"res://assets/enemies/mouse/cracked_lat_mask_1.png",
+	"res://assets/enemies/mouse/cracked_lat_mask_2.png",
+	"res://assets/enemies/mouse/lat_inside.png",
+	"res://assets/enemies/mouse/lat_mask.png",
+	"mouse_mask_destroy"
 ]
 var dog_sprites: Array[String] = [
 	"res://assets/enemies/dog/cracked_dog_mask_1.png",

@@ -40,7 +40,8 @@ func update_damage_visual(health: int):
 	if health <= 0:
 		animated_sprite_2d.show()
 		enemy_head.texture = sprite_inside
-		animated_sprite_2d.animation_finished.connect(_destoy_anim_finished)
+		if !animated_sprite_2d.animation_finished.is_connected(_destoy_anim_finished):
+			animated_sprite_2d.animation_finished.connect(_destoy_anim_finished)
 		animated_sprite_2d.play(destro_anim_name)
 		return
 		
