@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl5bjs4boq04i"
+path="res://.godot/imported/GGJ Card GameBroken Mask.mp3-639b41d0819292b6b7fb962c870a4e35.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/GGJ Card GameBroken Mask.mp3"
+dest_files=["res://.godot/imported/GGJ Card GameBroken Mask.mp3-639b41d0819292b6b7fb962c870a4e35.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

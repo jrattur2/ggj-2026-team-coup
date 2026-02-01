@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://ceh6lodam63x6" path="res://Scripts/gamestates/end_game.gd" id="13_co7th"]
 [ext_resource type="Script" uid="uid://cdbf521spm1v5" path="res://Scripts/gamestates/build_deck.gd" id="14_xumr6"]
 [ext_resource type="Script" uid="uid://dcg7wtc3sspt8" path="res://Scripts/gamestates/clear_all_cards.gd" id="15_5sm0d"]
-[ext_resource type="Texture2D" uid="uid://cj554rvllsqxs" path="res://assets/cards/card_back.png" id="15_xumr6"]
+[ext_resource type="Texture2D" uid="uid://cj5jny822d3hb" path="res://assets/cards/deck.png" id="15_xumr6"]
 [ext_resource type="Script" uid="uid://l340tvocrno2" path="res://Scripts/gamestates/dealer_deciding.gd" id="16_oye3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ukqk2"]
@@ -184,5 +184,4 @@ position = Vector2(700, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="Deck"]
 position = Vector2(174, 97)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_xumr6")
