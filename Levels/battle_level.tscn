@@ -1,7 +1,6 @@
-[gd_scene load_steps=72 format=3 uid="uid://ywwy2ltilu4v"]
+[gd_scene load_steps=71 format=3 uid="uid://ywwy2ltilu4v"]
 
 [ext_resource type="Script" uid="uid://c4grwdme2c13v" path="res://Levels/battle_level.gd" id="1_2r8sw"]
-[ext_resource type="Texture2D" uid="uid://crx2cshj3nyfb" path="res://assets/enemies/frog/frog_mask.png" id="2_5sm0d"]
 [ext_resource type="Texture2D" uid="uid://bdxt6pxl5m4xx" path="res://assets/enemies/dog/broken_dog_mask.png" id="2_qk7ls"]
 [ext_resource type="Texture2D" uid="uid://do0st23b0l0y4" path="res://assets/enemies/frog/broken_frog_mask.png" id="3_1grd7"]
 [ext_resource type="Texture2D" uid="uid://cc74lxc8q22r1" path="res://assets/enemies/dog/enemy_clothes.png" id="3_oye3g"]
@@ -418,14 +417,7 @@ animation = &"dog_mask_destroy"
 [node name="Body" type="Sprite2D" parent="Enemy/EnemyVisual"]
 texture = ExtResource("3_oye3g")
 
-[node name="FrogHead" type="Sprite2D" parent="Enemy/EnemyVisual"]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, 100)
-scale = Vector2(5, 5)
-texture = ExtResource("2_5sm0d")
-
-[node name="DogHead" type="Sprite2D" parent="Enemy/EnemyVisual"]
+[node name="EnemyHead" type="Sprite2D" parent="Enemy/EnemyVisual"]
 unique_name_in_owner = true
 texture = ExtResource("4_qk7ls")
 

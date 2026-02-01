@@ -14,6 +14,29 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var music_player: AudioStreamPlayer = %MusicPlayer
 @onready var restart_button: Button = %RestartButton
 
+var mouse_sprites: Array[String] = [
+	#TODO MOUSE
+	"res://assets/enemies/dog/cracked_dog_mask_1.png",
+	"res://assets/enemies/dog/cracked_dog_mask_2.png",
+	"res://assets/enemies/dog/dog_inside.png",
+	"res://assets/enemies/dog/dog_mask.png",
+	"dog_mask_destroy"
+]
+var dog_sprites: Array[String] = [
+	"res://assets/enemies/dog/cracked_dog_mask_1.png",
+	"res://assets/enemies/dog/cracked_dog_mask_2.png",
+	"res://assets/enemies/dog/dog_inside.png",
+	"res://assets/enemies/dog/dog_mask.png",
+	"dog_mask_destroy"
+]
+var frog_sprites: Array[String] = [
+	"res://assets/enemies/frog/cracked_frog_mask_1.png",
+	"res://assets/enemies/frog/cracked_frog_mask_2.png",
+	"res://assets/enemies/frog/frog_inside.png",
+	"res://assets/enemies/frog/frog_mask.png",
+	"frog_mask_destroy"
+]
+
 var player : PlayerInfo
 var current_battle: BattleLevel = null
 
@@ -51,6 +74,26 @@ func _load_battle(info: BattleStartInfo):
 	title_bg.hide()
 	battle_bg.show()
 	music_player.play()
+	
+	match info.enemyInfo.name:
+		"dog":
+			current_battle.sprite_damage1 = load(dog_sprites[0])
+			current_battle.sprite_damage2 = load(dog_sprites[1])
+			current_battle.sprite_inside = load(dog_sprites[2])
+			current_battle.sprite_default = load(dog_sprites[3])
+			current_battle.destro_anim_name = dog_sprites[4]
+		"mouse":
+			current_battle.sprite_damage1 = load(mouse_sprites[0])
+			current_battle.sprite_damage2 = load(mouse_sprites[1])
+			current_battle.sprite_inside = load(mouse_sprites[2])
+			current_battle.sprite_default = load(mouse_sprites[3])
+			current_battle.destro_anim_name = mouse_sprites[4]
+		"frog":
+			current_battle.sprite_damage1 = load(frog_sprites[0])
+			current_battle.sprite_damage2 = load(frog_sprites[1])
+			current_battle.sprite_inside = load(frog_sprites[2])
+			current_battle.sprite_default = load(frog_sprites[3])
+			current_battle.destro_anim_name = frog_sprites[4]
 	
 	_connect_battle_signals(current_battle)
 	current_battle.init_battle(info)

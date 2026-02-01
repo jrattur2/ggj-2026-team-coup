@@ -2,7 +2,8 @@ class_name BattleLevel extends Node
 
 enum EnemyType {
 	Dog,
-	Frog
+	Frog,
+	Mouse
 }
 
 #region Signal
@@ -11,16 +12,14 @@ signal on_lose()
 #endregion
 
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
-@onready var frog_head: Sprite2D = %FrogHead
-@onready var dog_head: Sprite2D = %DogHead
+@onready var enemy_head: Sprite2D = %EnemyHead
 @onready var game: Game = $GameStates/Game
 
-const CRACKED_DOG_MASK_1 = preload("uid://do52u8xtka1ei")
-const CRACKED_DOG_MASK_2 = preload("uid://ja1s8lbfrl45")
-const DOG_INSIDE = preload("uid://dgmekw0yk5786")
-const CRACKED_FROG_MASK_1 = preload("uid://bk3pdoxnlfnnm")
-const CRACKED_FROG_MASK_2 = preload("uid://cgvte1akgvvir")
-const FROG_INSIDE = preload("uid://cn7ymj5putr71")
+var sprite_default: Texture2D
+var sprite_damage1: Texture2D
+var sprite_damage2: Texture2D
+var sprite_inside: Texture2D
+var destro_anim_name: String
 
 var enemy_max_health := 3 #TODO could be part of Enemy resource
 var enemy_current_health := enemy_max_health
@@ -32,57 +31,30 @@ func init_battle(info: BattleStartInfo):
 	player_info = info.playerInfo
 	enemy_type = EnemyType.Dog if info.enemyInfo.name == "dog" else EnemyType.Frog
 	print_debug("fighting ", info.enemyInfo.name)
+	enemy_head.texture = sprite_default
 	_update_health_label(player_info.health, player_info.max_health, %PlayerHPLabel)
-	show_enemy(enemy_type)
-
-func show_enemy(type: EnemyType):
-	match type:
-		EnemyType.Dog:
-			frog_head.hide()
-			dog_head.show()
-		EnemyType.Frog:
-			dog_head.hide()
-			frog_head.show()
 
 func update_damage_visual(health: int):
-	print_debug("updateing visual")
-	var sprite: Texture2D = null
-	var head: Sprite2D = %DogHead if enemy_type == EnemyType.Dog else %FrogHead
+	print_debug("updating visual")
+
 	if health <= 0:
 		animated_sprite_2d.show()
+		enemy_head.texture = sprite_inside
 		animated_sprite_2d.animation_finished.connect(_destoy_anim_finished)
-		match enemy_type:
-			EnemyType.Dog:
-				head.texture = DOG_INSIDE
-				animated_sprite_2d.play("dog_mask_destroy")
-			EnemyType.Frog:
-				head.texture = FROG_INSIDE
-				animated_sprite_2d.play("frog_mask_destroy")
+		animated_sprite_2d.play(destro_anim_name)
 		return
 		
 	if health < 30:
-		match enemy_type:
-			EnemyType.Dog:
-				sprite = CRACKED_DOG_MASK_2
-			EnemyType.Frog:
-				sprite = CRACKED_FROG_MASK_2
-	elif health < 60:
-		match enemy_type:
-			EnemyType.Dog:
-				sprite = CRACKED_DOG_MASK_1
-			EnemyType.Frog:
-				sprite = CRACKED_FROG_MASK_1
+		enemy_head.texture = sprite_damage2
+		return
 	
-	if sprite:
-		match enemy_type:
-			EnemyType.Dog:
-				head.texture = sprite
-			EnemyType.Frog:
-				head.texture = sprite
+	if health < 60:
+		enemy_head.texture = sprite_damage1
+		return
 
 # deal damage to enemy
 func _deal_damage():
-	game.dealer_take_damage(10)
+	game.dealer_take_damage(13)
 
 # player takes damage
 func _take_damage():
