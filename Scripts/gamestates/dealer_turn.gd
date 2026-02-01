@@ -17,8 +17,10 @@ func enter_state():
 	
 	if dealer_score_min == dealer_score_max:
 		game.score_text.text = 'Dealer has ' + dealer_score_min
+		game.update_dealer_score_text('Dealer has ' + dealer_score_min)
 	else:
 		game.score_text.text = 'Dealer has ' + dealer_score_min + ' or ' + dealer_score_max
+		game.update_dealer_score_text('Dealer has ' + dealer_score_min + ' or ' + dealer_score_max)
 	
 
 func execute():
