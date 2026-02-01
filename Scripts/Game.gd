@@ -13,6 +13,28 @@ var build_deck: GameState
 var clear_all_cards: GameState
 var dealer_deciding: GameState
 
+enum turn_state {
+	DealerHit,
+	Tie,
+	PlayerBust,
+	DealerBust,
+	PlayerWin,
+	DealerWin,
+	PlayerChoice,
+	DealersTurn,
+}
+
+var turn_text_keys: Dictionary = {
+	turn_state.DealerHit: "TURN_DEALER_HIT",
+	turn_state.Tie: "TURN_TIE",
+	turn_state.PlayerBust: "TURN_PLAYER_BUST",
+	turn_state.DealerBust: "TURN_DEALER_BUST",
+	turn_state.PlayerWin: "TURN_WIN",
+	turn_state.DealerWin: "TURN_LOSE",
+	turn_state.PlayerChoice: "TURN_CHOICE",
+	turn_state.DealersTurn: "TURN_DEALER"
+}
+
 @onready var battle_level: BattleLevel = $"../.."
 
 @onready var deck: Node2D = %Deck

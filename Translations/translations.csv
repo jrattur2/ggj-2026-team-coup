@@ -12,3 +12,11 @@ BUTTON_STAND,Stand,スタンド
 BUTTON_DEAL,Deal,ディール
 BUTTON_SHUFFLE,Shuffle,シャッフル
 BUTTON_RESTART,Rematch,再挑戦
+TURN_DEALER_HIT,Dealer hits,ディーラーヒット
+TURN_TIE,Tie,引き分け
+TURN_PLAYER_BUST,Player bust,プレイヤーバスト
+TURN_DEALER_BUST,Dealer bust,ディーラーバスト
+TURN_WIN,Player wins,プレイヤーWIN
+TURN_LOSE,Dealer wins,ディーラーWIN
+TURN_CHOICE,"Player turn, make a choice",プレイヤーのターン
+TURN_DEALER,,

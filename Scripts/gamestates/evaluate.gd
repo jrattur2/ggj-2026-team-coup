@@ -33,31 +33,31 @@ func enter_state():
 	
 	if player_score == dealer_score:
 		end_round_state = EndRoundState.DRAW
-		game.player_turn_text.text = 'Tie, no winner'		
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.Tie])
 	
 	if player_bust and not dealer_bust:
 		end_round_state = EndRoundState.PLAYER_LOSE
-		game.player_turn_text.text = 'Player bust, Dealer wins'			
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.PlayerBust])
 
 	if dealer_bust and not player_bust:
 		end_round_state = EndRoundState.PLAYER_WIN
-		game.player_turn_text.text = 'Dealer bust, Player wins'		
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.DealerBust])
 	
 	elif player_blackjack and not dealer_blackjack:
 		end_round_state = EndRoundState.PLAYER_WIN
-		game.player_turn_text.text = 'Player Black Jack, Player Wins'
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.PlayerWin])
 		
 	elif dealer_blackjack and not player_blackjack:
 		end_round_state = EndRoundState.PLAYER_LOSE
-		game.player_turn_text.text = 'Dealer Black Jack, Dealer Wins'
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.DealerWin])
 	
 	elif player_score > dealer_score:
 		end_round_state = EndRoundState.PLAYER_WIN
-		game.player_turn_text.text = 'Player wins'
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.PlayerWin])
 		
 	elif player_score < dealer_score:
 		end_round_state = EndRoundState.PLAYER_LOSE
-		game.player_turn_text.text = 'Dealer wins'
+		game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.DealerWin])
 	
 	var damage_multiplier: int = 1;
 	for modifier: Modifier in player_active_modifiers.get_children():
