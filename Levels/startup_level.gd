@@ -105,16 +105,17 @@ func _on_battle_win(player_info: PlayerInfo):
 	player = player_info
 	_disconnect_battle_signals(current_battle)
 	
+	if enemies.is_empty():
+		win_screen.show()
+		restart_button.show()
+		return
+	
 	animation_player.speed_scale = 2.0
 	animation_player.play("fade_out")
 	
 	for node: Node in ingame.get_children():
 		node.queue_free()
 	
-	if enemies.is_empty():
-		win_screen.show()
-		restart_button.show()
-		return
 	
 	await animation_player.animation_finished
 	animation_player.speed_scale = 1.0
