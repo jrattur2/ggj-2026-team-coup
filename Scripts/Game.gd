@@ -13,6 +13,8 @@ var build_deck: GameState
 var clear_all_cards: GameState
 var dealer_deciding: GameState
 
+@onready var battle_level: BattleLevel = $"../.."
+
 @onready var deck: Node2D = %Deck
 
 var score_text: Label
@@ -186,13 +188,16 @@ func start_next_round():
 	
 func dealer_take_damage(damage: int):
 	dealer_health -= damage
+	battle_level.update_damage_visual(dealer_health)
 	print('Dealer takes ' + str(damage) + ' damage!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
 
 func player_take_damage(damage: int):
 	player_health -= damage
+	battle_level._take_damage()
 	print('Player takes ' + str(damage) + ' damage!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+<<<<<<< HEAD
 	
 func dealer_restore_damage(damage: int):
 	dealer_health += damage
@@ -203,3 +208,7 @@ func player_restore_damage(damage: int):
 	player_health += damage
 	print('Player restores ' + str(damage) + ' health!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+=======
+	if player_health <= 0:
+		battle_level.on_lose.emit()
+>>>>>>> ce285ac0558ad219b096c6174684fd1adac5f45c

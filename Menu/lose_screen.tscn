@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cesjx236ptpm1"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_5lkq0"]
-font_size = 64
+[ext_resource type="Texture2D" uid="uid://7aru1q4jpka1" path="res://assets/backgrounds/game_over.png" id="1_qcnj6"]
 
 [node name="LoseScreen" type="Control"]
 layout_mode = 3
@@ -11,18 +10,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -11.5
-offset_right = 39.0
-offset_bottom = 11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "YOU LOSE"
-label_settings = SubResource("LabelSettings_5lkq0")
+texture = ExtResource("1_qcnj6")

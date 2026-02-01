@@ -13,6 +13,11 @@ func execute():
 		var dealer_score_min = game.calculate_hand_value(game.dealer_hand)[0]
 		var dealer_score_max = game.calculate_hand_value(game.dealer_hand)[1]
 		
+		if dealer_score_min == 21 or dealer_score_max == 21:
+			print("Dealer has max score. Continue to next state")
+			game.update_state(game.evaluate)
+			return
+		
 		var dealer_score = 0;
 		if dealer_score_max < 21:
 			dealer_score = dealer_score_max
