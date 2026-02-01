@@ -45,7 +45,7 @@ func execute():
 	
 			game.add_card_to_hand(new_card, game.dealer_hand, true)
 			print("Dealer hits: " + new_card.rank + " of " + new_card.suit)
-			game.player_turn_text.text = 'Dealer Hits'
+			game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.DealerHit])
 			game.splay_cards(game.dealer_hand)
 			
 			game.update_state(game.dealer_turn)

@@ -2,7 +2,7 @@ class_name PlayerTurn
 extends GameState
 
 func enter_state():
-	game.player_turn_text.text = 'Player Turn, make a choice'
+	game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.PlayerChoice])
 	game.update_game_state_text('Player Turn, make a choice')
 	
 	# Enable action buttons

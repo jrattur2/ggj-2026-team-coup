@@ -10,7 +10,7 @@ func enter_state():
 	second_card.face_up = true
 	second_card.update_display()
 	
-	game.player_turn_text.text = 'Dealer Turn'
+	game.player_turn_text.text = tr(game.turn_text_keys[game.turn_state.DealersTurn])
 	
 	var dealer_score_min = str(game.calculate_hand_value(game.dealer_hand)[0])
 	var dealer_score_max = str(game.calculate_hand_value(game.dealer_hand)[1])
