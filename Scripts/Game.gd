@@ -90,6 +90,13 @@ func _on_modifier_click(modifier: Modifier):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	game_state.execute()
+	
+	if player_active_modifiers != null:
+		for modifier: Modifier in player_active_modifiers.get_children():
+			if modifier is RestoreHealth:
+				player_restore_damage(100-player_health)
+				modifier.queue_free()
+	
 	pass
 
 func update_state(new_state: GameState):
@@ -185,4 +192,14 @@ func dealer_take_damage(damage: int):
 func player_take_damage(damage: int):
 	player_health -= damage
 	print('Player takes ' + str(damage) + ' damage!')
+	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+	
+func dealer_restore_damage(damage: int):
+	dealer_health += damage
+	print('Dealer restores ' + str(damage) + ' health!')
+	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+
+func player_restore_damage(damage: int):
+	player_health += damage
+	print('Player restores ' + str(damage) + ' health!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))

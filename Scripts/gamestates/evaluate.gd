@@ -3,7 +3,11 @@ extends GameState
 
 var timer_start_time: float = 0.0
 
+@onready var player_active_modifiers: Node2D = %ActivePlayerModifiers
+
 enum EndRoundState { PLAYER_WIN, PLAYER_LOSE, DRAW }
+
+
 
 func enter_state():
 	
@@ -58,13 +62,19 @@ func enter_state():
 		end_round_state = EndRoundState.PLAYER_LOSE
 		game.player_turn_text.text = 'Dealer wins'
 	
+	var damage_multiplier: int = 1;
+	for modifier: Modifier in player_active_modifiers.get_children():
+		if modifier is DoubleDamage:
+			damage_multiplier = 2
+			modifier.queue_free()
+	
 	if end_round_state == EndRoundState.PLAYER_WIN:
 		var score_difference = player_score - dealer_score
-		game.dealer_take_damage(score_difference * 10)
+		game.dealer_take_damage(score_difference * 10 * damage_multiplier)
 		
 	if end_round_state == EndRoundState.PLAYER_LOSE:
 		var score_difference = dealer_score - player_score
-		game.player_take_damage(score_difference * 10)
+		game.player_take_damage(score_difference * 10 * damage_multiplier)
 	
 	if end_round_state == EndRoundState.DRAW:
 		print('Draw, no damage done')

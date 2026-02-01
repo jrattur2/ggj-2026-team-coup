@@ -511,7 +511,7 @@ texture = ExtResource("3_xumr6")
 
 [node name="PlayerModifierHand" type="Node2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(-800, -100)
+position = Vector2(-800, -300)
 
 [node name="DoubleDamage" type="TextureButton" parent="Player/PlayerModifierHand" groups=["modifiers"]]
 offset_right = 210.0
