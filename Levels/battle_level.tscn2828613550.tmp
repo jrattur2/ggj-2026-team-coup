@@ -1,0 +1,187 @@
+[gd_scene load_steps=17 format=3 uid="uid://ywwy2ltilu4v"]
+
+[ext_resource type="Script" uid="uid://c4grwdme2c13v" path="res://Levels/battle_level.gd" id="1_2r8sw"]
+[ext_resource type="Texture2D" uid="uid://cf8tp7bo0q7ev" path="res://icon.svg" id="2_ukqk2"]
+[ext_resource type="Texture2D" uid="uid://cr5qsui7jv7b6" path="res://assets/cards/card_3.png" id="3_xumr6"]
+[ext_resource type="Texture2D" uid="uid://bx1v5bpgb5vg1" path="res://assets/cards/card_2.png" id="4_5sm0d"]
+[ext_resource type="Script" uid="uid://ccgjmurtctj3" path="res://Scripts/Game.gd" id="7_qk7ls"]
+[ext_resource type="Script" uid="uid://brgsaeu8pjjn4" path="res://Scripts/gamestates/player_turn.gd" id="8_1grd7"]
+[ext_resource type="Script" uid="uid://rjifhhn6q1vr" path="res://Scripts/gamestates/dealer_turn.gd" id="9_15kul"]
+[ext_resource type="Script" uid="uid://bjfibqxmhqck5" path="res://Scripts/gamestates/deal.gd" id="10_avfpm"]
+[ext_resource type="Script" uid="uid://cahvi30p0vqjm" path="res://Scripts/gamestates/start.gd" id="11_758gj"]
+[ext_resource type="Script" uid="uid://d1omv8clm8015" path="res://Scripts/gamestates/evaluate.gd" id="12_v5gh4"]
+[ext_resource type="Script" uid="uid://ceh6lodam63x6" path="res://Scripts/gamestates/end_game.gd" id="13_co7th"]
+[ext_resource type="Script" uid="uid://cdbf521spm1v5" path="res://Scripts/gamestates/build_deck.gd" id="14_xumr6"]
+[ext_resource type="Script" uid="uid://dcg7wtc3sspt8" path="res://Scripts/gamestates/clear_all_cards.gd" id="15_5sm0d"]
+[ext_resource type="Texture2D" uid="uid://cj5jny822d3hb" path="res://assets/cards/deck.png" id="15_xumr6"]
+[ext_resource type="Script" uid="uid://l340tvocrno2" path="res://Scripts/gamestates/dealer_deciding.gd" id="16_oye3g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ukqk2"]
+font_size = 48
+
+[node name="BattleLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_2r8sw")
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(500, 150)
+
+[node name="EnemySprite" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("2_ukqk2")
+
+[node name="EnemyHPLabel" type="Label" parent="Enemy"]
+unique_name_in_owner = true
+offset_left = -219.0
+offset_top = -31.0
+offset_right = -179.0
+offset_bottom = -8.0
+text = "3/3"
+label_settings = SubResource("LabelSettings_ukqk2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyName" type="Label" parent="Enemy"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = -134.0
+offset_right = 134.0
+offset_bottom = -67.0
+grow_horizontal = 2
+text = "Test enemy"
+label_settings = SubResource("LabelSettings_ukqk2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player_2_Card_1" type="Node2D" parent="Enemy"]
+position = Vector2(-400, 100)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy/Player_2_Card_1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xumr6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Enemy/Player_2_Card_1"]
+position = Vector2(100, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xumr6")
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(500, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_ukqk2")
+
+[node name="PlayerHPLabel" type="Label" parent="Player"]
+unique_name_in_owner = true
+offset_left = -219.0
+offset_top = -31.0
+offset_right = -179.0
+offset_bottom = -8.0
+text = "1/3"
+label_settings = SubResource("LabelSettings_ukqk2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player_1_Card_1" type="Node2D" parent="Player"]
+position = Vector2(-400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Player_1_Card_1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_5sm0d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Player/Player_1_Card_1"]
+position = Vector2(100, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xumr6")
+
+[node name="Hit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 642.0
+offset_right = 308.0
+offset_bottom = 673.0
+text = "Hit"
+
+[node name="Stand" type="Button" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 646.0
+offset_right = 493.0
+offset_bottom = 677.0
+text = "Stand"
+
+[node name="Deal_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 873.0
+offset_top = 448.0
+offset_right = 936.0
+offset_bottom = 479.0
+text = "Deal"
+
+[node name="PlayerTurnText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 338.0
+offset_right = 417.0
+offset_bottom = 361.0
+text = "Player Turn"
+
+[node name="ScoreText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 651.0
+offset_right = 717.0
+offset_bottom = 674.0
+text = "You have 6 or 16"
+
+[node name="GameStates" type="Node" parent="."]
+
+[node name="Game" type="Node" parent="GameStates"]
+script = ExtResource("7_qk7ls")
+metadata/_custom_type_script = "uid://ccgjmurtctj3"
+
+[node name="PlayerTurn" type="Node" parent="GameStates"]
+script = ExtResource("8_1grd7")
+metadata/_custom_type_script = "uid://brgsaeu8pjjn4"
+
+[node name="DealerTurn" type="Node" parent="GameStates"]
+script = ExtResource("9_15kul")
+metadata/_custom_type_script = "uid://rjifhhn6q1vr"
+
+[node name="Deal" type="Node" parent="GameStates"]
+script = ExtResource("10_avfpm")
+metadata/_custom_type_script = "uid://bjfibqxmhqck5"
+
+[node name="Start" type="Node" parent="GameStates"]
+script = ExtResource("11_758gj")
+metadata/_custom_type_script = "uid://cahvi30p0vqjm"
+
+[node name="Evaluate" type="Node" parent="GameStates"]
+script = ExtResource("12_v5gh4")
+metadata/_custom_type_script = "uid://d1omv8clm8015"
+
+[node name="EndGame" type="Node" parent="GameStates"]
+script = ExtResource("13_co7th")
+metadata/_custom_type_script = "uid://ceh6lodam63x6"
+
+[node name="BuildDeck" type="Node" parent="GameStates"]
+script = ExtResource("14_xumr6")
+metadata/_custom_type_script = "uid://cdbf521spm1v5"
+
+[node name="ClearAllCards" type="Node" parent="GameStates"]
+script = ExtResource("15_5sm0d")
+metadata/_custom_type_script = "uid://dcg7wtc3sspt8"
+
+[node name="DealerDeciding" type="Node" parent="GameStates"]
+script = ExtResource("16_oye3g")
+metadata/_custom_type_script = "uid://l340tvocrno2"
+
+[node name="Deck" type="Node2D" parent="."]
+position = Vector2(700, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="Deck"]
+position = Vector2(174, 97)
+texture = ExtResource("15_xumr6")

@@ -3,6 +3,7 @@ extends GameState
 
 func enter_state():
 	game.player_turn_text.text = 'Player Turn, make a choice'
+	game.update_game_state_text('Player Turn, make a choice')
 	
 	# Enable action buttons
 	game.hit_button.disabled = false
@@ -33,14 +34,17 @@ func update_display():
 	
 	if game.calculate_hand_value(game.player_hand)[0] > 21:
 		game.score_text.text = 'BUST! ' + str(hand_value[0])
+		game.update_state(game.dealer_turn)
 	else:
 		var player_score_min = str(game.calculate_hand_value(game.player_hand)[0])
 		var player_score_max = str(game.calculate_hand_value(game.player_hand)[1])
 	
-		if player_score_min == player_score_max:
+		if (int(player_score_min) == int(player_score_max)) or (int(player_score_max) > 21):
 			game.score_text.text = 'You have ' + player_score_min
+			game.update_player_score_text('You have ' + player_score_min)
 		else:
 			game.score_text.text = 'You have ' + player_score_min + ' or ' + player_score_max
+			game.update_player_score_text('You have ' + player_score_min + ' or ' + player_score_max)
 
 func on_hit():
 	var new_card = game.draw_card()

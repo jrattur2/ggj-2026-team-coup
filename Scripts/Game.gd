@@ -29,6 +29,14 @@ var deal_button: Button
 var player_hand: Node2D  # Player's hand
 var dealer_hand: Node2D  # Dealer's hand
 
+var player_health = 100;
+var dealer_health = 100;
+
+var player_score_text: String = ''
+var dealer_score_text: String = ''
+var game_state_text: String = ''
+var round_number = 0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -153,3 +161,29 @@ func _on_hit_pressed():
 func _on_stand_pressed():
 	if game_state is PlayerTurn:
 		(game_state as PlayerTurn).on_stand()
+
+func update_player_score_text(text: String):
+	player_score_text = text;
+	print(player_score_text)
+	
+func update_dealer_score_text(text: String):
+	dealer_score_text = text;
+	print(dealer_score_text)
+	
+func update_game_state_text(text: String):
+	game_state_text = text;
+	print(game_state_text)
+	
+func start_next_round():
+	round_number += 1
+	print('Start round ' + str(round_number))
+	
+func dealer_take_damage(damage: int):
+	dealer_health -= damage
+	print('Dealer takes ' + str(damage) + ' damage!')
+	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+
+func player_take_damage(damage: int):
+	player_health -= damage
+	print('Player takes ' + str(damage) + ' damage!')
+	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))

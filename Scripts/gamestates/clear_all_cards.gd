@@ -8,6 +8,8 @@ func enter_state():
 	delete_children(game.player_1_card_1)
 	delete_children(game.player_2_card_1)	
 
+	game.start_next_round()
+
 func execute():
 	if game.game_state == game.clear_all_cards:
 		game.update_state(game.build_deck)

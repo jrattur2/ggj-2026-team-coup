@@ -8,7 +8,7 @@ func enter_state():
 	
 func execute():
 	
-	if Time.get_ticks_msec() > (timer_start_time + 1500):
+	if game.game_state == game.dealer_deciding and Time.get_ticks_msec() > (timer_start_time + 1500):
 		
 		var dealer_score_min = game.calculate_hand_value(game.dealer_hand)[0]
 		var dealer_score_max = game.calculate_hand_value(game.dealer_hand)[1]
@@ -19,7 +19,19 @@ func execute():
 		else:
 			dealer_score = dealer_score_min
 			
-		if dealer_score < 17:
+		var player_score_min = game.calculate_hand_value(game.player_hand)[0]
+		var player_score_max = game.calculate_hand_value(game.player_hand)[1]
+		
+		var player_score = 0;
+		if player_score_max < 21:
+			player_score = player_score_max
+		else:
+			player_score = player_score_min
+			
+		if dealer_score > 21:
+			game.update_state(game.evaluate)
+			
+		elif dealer_score <= player_score:
 			
 			var new_card = game.draw_card()
 			if new_card == null:

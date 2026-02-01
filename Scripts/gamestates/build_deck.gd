@@ -16,6 +16,7 @@ func enter_state():
 		card.position.y = 0
 			
 		game.deck.add_child(card, true)
+		
 	
 	shuffle_deck(game.deck)
 
@@ -94,5 +95,5 @@ func build_deck():
 func shuffle_deck(deck: Node):
 	for card in deck.get_children():
 		var random_index: int = rng.randi_range(0, game.deck.get_children().size() -1)
-		print('move ' + card.name + ' to index ' + str(random_index))
+		#print('move ' + card.name + ' to index ' + str(random_index))
 		deck.move_child(card, random_index)
