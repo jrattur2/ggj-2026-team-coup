@@ -20,6 +20,10 @@ var dealer_deciding: GameState
 var score_text: Label
 var player_turn_text: Label
 
+@onready var player_health_text: Label = %PlayerHealthText
+@onready var dealer_health_text: Label = %DealerHealthText
+
+
 # UI Buttons
 @onready var hit_button: Button = %HitButton
 @onready var stand_button: Button = %StandButton
@@ -191,6 +195,7 @@ func start_next_round():
 func dealer_take_damage(damage: int):
 	dealer_health -= damage
 	battle_level.update_damage_visual(dealer_health)
+	dealer_health_text.text = 'Dealer HP: ' + str(dealer_health)
 	print('Dealer takes ' + str(damage) + ' damage!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
 
@@ -199,15 +204,19 @@ func player_take_damage(damage: int):
 	battle_level._take_damage()
 	print('Player takes ' + str(damage) + ' damage!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
+	player_health_text.text = 'Player HP: ' + str(player_health)
 	if player_health <= 0:
 		battle_level.on_lose.emit()
+	
 		
 func dealer_restore_health(damage: int):
 	dealer_health += damage
+	dealer_health_text.text = 'Dealer HP: ' + str(dealer_health)
 	print('Dealer restores ' + str(damage) + ' health!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
 
 func player_restore_health(damage: int):
 	player_health += damage
+	player_health_text.text = 'Player HP: ' + str(player_health)
 	print('Player restores ' + str(damage) + ' health!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
