@@ -4,7 +4,5 @@
 
 [resource]
 script = ExtResource("1_hw3tr")
-name = "test2"
-difficulty = "medium"
-deck = Array[String](["1", "10"])
+name = "frog"
 metadata/_custom_type_script = "uid://dyaodag2l1fbs"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://beavtv02jelgd"]
+
+[ext_resource type="Script" uid="uid://dyaodag2l1fbs" path="res://Resources/Enemy/enemy.gd" id="1_gk2eb"]
+
+[resource]
+script = ExtResource("1_gk2eb")
+name = "dog"
+metadata/_custom_type_script = "uid://dyaodag2l1fbs"
