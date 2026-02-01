@@ -12,34 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://y88o6qihvq77" path="res://assets/backgrounds/background_objects.png" id="7_8bson"]
 [ext_resource type="PackedScene" uid="uid://btv65mscyer4p" path="res://Menu/win_screen.tscn" id="7_vpdpk"]
 [ext_resource type="PackedScene" uid="uid://cesjx236ptpm1" path="res://Menu/lose_screen.tscn" id="8_ntmli"]
-[ext_resource type="AudioStream" uid="uid://bjdb6a8rxwbet" path="res://assets/music/battle theme.ogg" id="12_cuecd"]
-
-[sub_resource type="Animation" id="Animation_8bson"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
+[ext_resource type="AudioStream" uid="uid://d0nk8dq8c7lj6" path="res://assets/music/Main Menu Theme.ogg" id="13_8bson"]
 
 [sub_resource type="Animation" id="Animation_6qdi1"]
 length = 0.001
@@ -66,6 +39,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8bson"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2clqc"]
@@ -130,7 +130,7 @@ visible = false
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("12_cuecd")
+stream = ExtResource("13_8bson")
 autoplay = true
 bus = &"Music"
 

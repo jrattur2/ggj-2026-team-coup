@@ -19,4 +19,4 @@ TURN_DEALER_BUST,Dealer bust,ディーラーバスト
 TURN_WIN,Player wins,プレイヤーWIN
 TURN_LOSE,Dealer wins,ディーラーWIN
 TURN_CHOICE,"Player turn, make a choice",プレイヤーのターン
-TURN_DEALER,,
+TURN_DEALER,Dealer turn,ディーラーのターン

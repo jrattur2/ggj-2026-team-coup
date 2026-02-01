@@ -16,7 +16,11 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
-const MASK_OFF_GAME_OVER = preload("uid://brtjjqyn5tb3p")
+#music
+const BATTLE_THEME_2 = preload("uid://brqehc6mqwfmn")
+const BATTLE_THEME = preload("uid://bjdb6a8rxwbet")
+const MASK_OFF_GAME_OVER = preload("uid://vhvjfheugk5h")
+const LEVEL_CLEAR_MASTER = preload("uid://08df7ntef8li")
 
 var mouse_sprites: Array[String] = [
 	"res://assets/enemies/mouse/cracked_lat_mask_1.png",
@@ -76,6 +80,9 @@ func _load_battle(info: BattleStartInfo):
 	
 	title_bg.hide()
 	battle_bg.show()
+	music_player.stop()
+	var battle_music = [BATTLE_THEME, BATTLE_THEME_2].pick_random()
+	music_player.stream = battle_music
 	music_player.play()
 	
 	match info.enemyInfo.name:
@@ -108,6 +115,9 @@ func _on_battle_win(player_info: PlayerInfo):
 	if enemies.is_empty():
 		win_screen.show()
 		restart_button.show()
+		music_player.stop()
+		music_player.stream = LEVEL_CLEAR_MASTER
+		music_player.play()
 		return
 	
 	animation_player.speed_scale = 2.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vhvjfheugk5h"
+path="res://.godot/imported/Mask Off Game Over.ogg-8a66e7030289de35919f30afe52755df.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Mask Off Game Over.ogg"
+dest_files=["res://.godot/imported/Mask Off Game Over.ogg-8a66e7030289de35919f30afe52755df.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
