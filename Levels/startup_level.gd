@@ -14,6 +14,8 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var music_player: AudioStreamPlayer = %MusicPlayer
 @onready var restart_button: Button = %RestartButton
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
 const MASK_OFF_GAME_OVER = preload("uid://brtjjqyn5tb3p")
 
 var mouse_sprites: Array[String] = [
@@ -103,21 +105,32 @@ func _on_battle_win(player_info: PlayerInfo):
 	player = player_info
 	_disconnect_battle_signals(current_battle)
 	
-	for node: Node in ingame.get_children():
-		node.queue_free()
-	
 	if enemies.is_empty():
 		win_screen.show()
 		restart_button.show()
 		return
 	
-	reward_menu.on_reward_chosen.connect(_on_reward_chosen)
-	reward_menu.populate_rewards(
-		[
-			PostsBattleMenu.Reward.new(PostsBattleMenu.RewardType.Heal, 3)
-		]
-	)
-	reward_menu.show()
+	animation_player.speed_scale = 2.0
+	animation_player.play("fade_out")
+	
+	for node: Node in ingame.get_children():
+		node.queue_free()
+	
+	
+	await animation_player.animation_finished
+	animation_player.speed_scale = 1.0
+	animation_player.play_backwards("fade_out")
+	
+	var next_enemy: Enemy = enemies.pop_back()
+	assert(next_enemy)
+	_load_battle(BattleStartInfo.new(player, next_enemy))
+	#reward_menu.on_reward_chosen.connect(_on_reward_chosen)
+	#reward_menu.populate_rewards(
+	#	[
+	#		PostsBattleMenu.Reward.new(PostsBattleMenu.RewardType.Heal, 3)
+	#	]
+	#)
+	#reward_menu.show()
 
 func _on_battle_lose():
 	_disconnect_battle_signals(current_battle)
