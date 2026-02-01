@@ -7,3 +7,7 @@ REWARD_FINISH,Continue,次へ
 POST_BATTLE_TITLE,Choose your reward,報酬を選んで下さい
 REWARD_HEAL_NAME,Heal,回復
 REWARD_HEAL_EFFECT,Heal by {value},体力を{value}回復
+BUTTON_HIT,Hit,ヒット
+BUTTON_STAND,Stand,スタンド
+BUTTON_DEAL,Deal,ディール
+BUTTON_SHUFFLE,Shuffle,シャッフル

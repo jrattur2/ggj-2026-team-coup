@@ -12,14 +12,7 @@ var player_info: PlayerInfo = null
 
 func init_battle(info: BattleStartInfo):
 	player_info = info.playerInfo
-	%EnemyName.text = info.enemyInfo.name
-	_update_health_label(enemy_current_health, enemy_max_health, %EnemyHPLabel)
 	_update_health_label(player_info.health, player_info.max_health, %PlayerHPLabel)
-
-func finish_turn():
-	# reveal all numbers
-	# compare who has higher number
-	pass
 
 # deal damage to enemy
 func _deal_damage():

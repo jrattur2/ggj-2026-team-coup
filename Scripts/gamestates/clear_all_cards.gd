@@ -5,8 +5,8 @@ func enter_state():
 	print('Deleting all cards')
 	
 	delete_children(game.deck)
-	delete_children(game.player_1_card_1)
-	delete_children(game.player_2_card_1)	
+	delete_children(game.player_hand)
+	delete_children(game.dealer_hand)
 
 func execute():
 	if game.game_state == game.clear_all_cards:
