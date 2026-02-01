@@ -35,11 +35,11 @@ func enter_state():
 		game.player_turn_text.text = 'Tie, no winner'		
 	
 	if player_bust and not dealer_bust:
-		end_round_state = EndRoundState.PLAYER_WIN
+		end_round_state = EndRoundState.PLAYER_LOSE
 		game.player_turn_text.text = 'Player bust, Dealer wins'			
 
 	if dealer_bust and not player_bust:
-		end_round_state = EndRoundState.PLAYER_LOSE
+		end_round_state = EndRoundState.PLAYER_WIN
 		game.player_turn_text.text = 'Dealer bust, Player wins'		
 	
 	elif player_blackjack and not dealer_blackjack:
@@ -59,11 +59,11 @@ func enter_state():
 		game.player_turn_text.text = 'Dealer wins'
 	
 	if end_round_state == EndRoundState.PLAYER_WIN:
-		var score_difference = player_score - dealer_score
+		var score_difference = abs(player_score - dealer_score)
 		game.dealer_take_damage(score_difference * 10)
 		
 	if end_round_state == EndRoundState.PLAYER_LOSE:
-		var score_difference = dealer_score - player_score
+		var score_difference = abs(dealer_score - player_score)
 		game.player_take_damage(score_difference * 10)
 	
 	if end_round_state == EndRoundState.DRAW:
