@@ -20,6 +20,10 @@ signal on_lose()
 @onready var take_damage_sfx: AudioStreamPlayer = %TakeDamageSfx
 @onready var enemy_dead_sfx: AudioStreamPlayer = %EnemyDeadSfx
 
+@onready var enemy: Control = %Enemy
+@onready var player: Control = %Player
+@onready var damage_hit_player: AnimatedSprite2D = %DamageHitPlayer
+
 var sprite_default: Texture2D
 var sprite_damage1: Texture2D
 var sprite_damage2: Texture2D
@@ -41,6 +45,10 @@ func init_battle(info: BattleStartInfo):
 
 func update_damage_visual(health: int):
 	print_debug("updating visual")
+	
+	damage_hit_player.global_position = enemy.global_position
+	damage_hit_player.show()
+	damage_hit_player.play("deal_damage")
 	
 	if health <= 0:
 		animated_sprite_2d.show()
@@ -64,16 +72,16 @@ func update_damage_visual(health: int):
 		enemy_head.texture = sprite_damage1
 		return
 
-# deal damage to enemy
-func _deal_damage():
-	game.dealer_take_damage(13)
-
 # player takes damage
 func _take_damage():
-	game.player_take_damage(13)
+	take_damage_sfx.play()
+	damage_hit_player.global_position = player.global_position
+	damage_hit_player.show()
+	damage_hit_player.play("deal_damage")
 
 func _destoy_anim_finished():
 	on_win.emit(player_info)
+
 
 func _update_health_label(new_health: int, max_health: int, label: Label):
 	
@@ -82,10 +90,14 @@ func _update_health_label(new_health: int, max_health: int, label: Label):
 func _unhandled_input(event: InputEvent) -> void:
 	if OS.has_feature("debug"):
 		if event.is_action_pressed("dev_win_turn"):
-			_deal_damage()
+			game.dealer_take_damage(13)
 		elif event.is_action_pressed("dev_win_match"):
 			on_win.emit()
 		elif event.is_action_pressed("dev_lose_turn"):
-			_take_damage()
+			game.player_take_damage(13)
 		elif event.is_action_pressed("dev_lose_match"):
 			on_lose.emit()
+
+
+func _on_damage_hit_player_animation_finished() -> void:
+	damage_hit_player.hide()

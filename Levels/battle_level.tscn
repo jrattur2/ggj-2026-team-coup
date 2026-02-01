@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://ywwy2ltilu4v"]
+[gd_scene load_steps=107 format=3 uid="uid://ywwy2ltilu4v"]
 
 [ext_resource type="Script" uid="uid://c4grwdme2c13v" path="res://Levels/battle_level.gd" id="1_2r8sw"]
 [ext_resource type="Texture2D" uid="uid://bdxt6pxl5m4xx" path="res://assets/enemies/dog/broken_dog_mask.png" id="2_qk7ls"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://ddd7ibeslifla" path="res://assets/sfx/sfx2.wav" id="21_co7th"]
 [ext_resource type="AudioStream" uid="uid://cl5bjs4boq04i" path="res://assets/sfx/GGJ Card GameBroken Mask.mp3" id="21_v5gh4"]
 [ext_resource type="AudioStream" uid="uid://b714fndi2eelp" path="res://assets/sfx/GGJ Card GameEnemy Attack.mp3" id="22_co7th"]
+[ext_resource type="Texture2D" uid="uid://ba6ipr8owp7dn" path="res://assets/ui/hit.png" id="24_co7th"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15kul"]
 atlas = ExtResource("2_qk7ls")
@@ -570,6 +571,42 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_ukqk2"]
 font_size = 48
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh7yn"]
+atlas = ExtResource("24_co7th")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r842j"]
+atlas = ExtResource("24_co7th")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oruog"]
+atlas = ExtResource("24_co7th")
+region = Rect2(0, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms4ye"]
+atlas = ExtResource("24_co7th")
+region = Rect2(1080, 1080, 1080, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ugbaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh7yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r842j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oruog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms4ye")
+}],
+"loop": false,
+"name": &"deal_damage",
+"speed": 5.0
+}]
+
 [node name="BattleLevel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -580,6 +617,7 @@ grow_vertical = 2
 script = ExtResource("1_2r8sw")
 
 [node name="Enemy" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -649,6 +687,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_xumr6")
 
 [node name="Player" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -817,3 +856,11 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("22_co7th")
 bus = &"SFX"
+
+[node name="DamageHitPlayer" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+sprite_frames = SubResource("SpriteFrames_ugbaq")
+animation = &"deal_damage"
+
+[connection signal="animation_finished" from="DamageHitPlayer" to="." method="_on_damage_hit_player_animation_finished"]

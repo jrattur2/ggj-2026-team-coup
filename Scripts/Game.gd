@@ -174,7 +174,7 @@ func dealer_take_damage(damage: int):
 
 func player_take_damage(damage: int):
 	player_health -= damage
-	battle_level.take_damage_sfx.play()
+	battle_level._take_damage()
 	print('Player takes ' + str(damage) + ' damage!')
 	print('Player health = ' + str(player_health) + ' Dealer health = ' + str(dealer_health))
 	if player_health <= 0:
