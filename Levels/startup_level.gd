@@ -9,6 +9,9 @@ const BATTLE_LEVEL_UID := "uid://ywwy2ltilu4v"
 @onready var reward_menu: PostsBattleMenu = $RewardMenu
 @onready var win_screen: Control = $WinScreen
 @onready var lose_screen: Control = $LoseScreen
+@onready var title_bg: TextureRect = %TitleBG
+@onready var battle_bg: TextureRect = %BattleBG
+@onready var music_player: AudioStreamPlayer = %MusicPlayer
 
 var player : PlayerInfo
 var current_battle: BattleLevel = null
@@ -18,6 +21,8 @@ func _ready() -> void:
 	reward_menu.hide()
 	win_screen.hide()
 	lose_screen.hide()
+	battle_bg.hide()
+	title_bg.show()
 	main_menu.on_main_menu_start_pressed.connect(_on_start_pressed)
 
 func _on_start_pressed():
@@ -39,6 +44,11 @@ func _load_battle(info: BattleStartInfo):
 	current_battle = battle_scene.instantiate()
 	assert(current_battle)
 	ingame.add_child(current_battle, true)
+	
+	title_bg.hide()
+	battle_bg.show()
+	music_player.play()
+	
 	_connect_battle_signals(current_battle)
 	current_battle.init_battle(info)
 

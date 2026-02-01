@@ -13,21 +13,20 @@ var build_deck: GameState
 var clear_all_cards: GameState
 var dealer_deciding: GameState
 
-var deck: Node2D
-var player_1_card_1: Node2D  # Player hand container # Unused, keeping for compatibility
-var player_2_card_1: Node2D  # Dealer hand container  # Unused, keeping for compatibility
+@onready var deck: Node2D = %Deck
 
 var score_text: Label
 var player_turn_text: Label
 
 # UI Buttons
-var hit_button: Button
-var stand_button: Button
-var deal_button: Button
+@onready var hit_button: Button = %HitButton
+@onready var stand_button: Button = %StandButton
+@onready var deal_button: Button = %DealButton
+
 
 # Hand containers
-var player_hand: Node2D  # Player's hand
-var dealer_hand: Node2D  # Dealer's hand
+@onready var player_hand: Node2D = %Player_1_Card_1
+@onready var dealer_hand: Node2D = %Player_2_Card_1
 
 var player_health = 100;
 var dealer_health = 100;
@@ -63,19 +62,6 @@ func _ready() -> void:
 	
 	score_text = get_node(currentRoot + "ScoreText")
 	player_turn_text = get_node(currentRoot + "PlayerTurnText")
-	
-	# Initialize buttons
-	hit_button = get_node(currentRoot + "Hit")
-	stand_button = get_node(currentRoot + "Stand")
-	deal_button = get_node(currentRoot + "Deal_Button")
-	
-	deck = get_node(currentRoot + "Deck")
-	player_1_card_1 = get_node(currentRoot + "Player/Player_1_Card_1")
-	player_2_card_1 = get_node(currentRoot + "Enemy/Player_2_Card_1")
-	
-	# Set up hand containers
-	player_hand = player_1_card_1
-	dealer_hand = player_2_card_1
 	
 	deal_button.pressed.connect(_on_deal_pressed)
 	hit_button.pressed.connect(_on_hit_pressed)

@@ -13,9 +13,9 @@ enum GameLanguage {
 	Japanese,
 }
 
-@onready var master_slider: HSlider = $MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4/VBoxContainer/MasterSlider
-@onready var music_slider: HSlider = $MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4/VBoxContainer2/MusicSlider
-@onready var sfx_slider: HSlider = $MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer4/VBoxContainer3/SFXSlider
+@onready var master_slider: HSlider = %MasterSlider
+@onready var music_slider: HSlider = %MusicSlider
+@onready var sfx_slider: HSlider = %SFXSlider
 
 var current_language := GameLanguage.English
 

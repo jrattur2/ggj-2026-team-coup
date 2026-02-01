@@ -22,8 +22,8 @@ func enter_state():
 	game.add_card_to_hand(card4, game.dealer_hand, false)  # Dealer's second card is face down
 	#print("Dealer dealt: " + card4.rank + " of " + card4.suit + " (face down)")
 	
-	game.splay_cards(game.player_1_card_1)
-	game.splay_cards(game.player_2_card_1)
+	game.splay_cards(game.player_hand)
+	game.splay_cards(game.dealer_hand)
 	
 	pass
 	
