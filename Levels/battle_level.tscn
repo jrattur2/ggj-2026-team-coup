@@ -1,11 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://ywwy2ltilu4v"]
+[gd_scene load_steps=17 format=3 uid="uid://ywwy2ltilu4v"]
 
 [ext_resource type="Script" uid="uid://c4grwdme2c13v" path="res://Levels/battle_level.gd" id="1_2r8sw"]
 [ext_resource type="Texture2D" uid="uid://cf8tp7bo0q7ev" path="res://icon.svg" id="2_ukqk2"]
-[ext_resource type="Texture2D" uid="uid://c7anevx4hjr8n" path="res://assets/external/Playing Cards/card-clubs-9.png" id="3_r7anb"]
-[ext_resource type="Texture2D" uid="uid://das74rcu1ij8a" path="res://assets/external/Playing Cards/card-diamonds-2.png" id="4_xumr6"]
-[ext_resource type="Texture2D" uid="uid://bij4hie6cwt7a" path="res://assets/external/Playing Cards/card-clubs-1.png" id="5_5sm0d"]
-[ext_resource type="Texture2D" uid="uid://bt3db74u40023" path="res://assets/external/Playing Cards/card-clubs-5.png" id="6_oye3g"]
+[ext_resource type="Texture2D" uid="uid://cr5qsui7jv7b6" path="res://assets/cards/card_3.png" id="3_xumr6"]
+[ext_resource type="Texture2D" uid="uid://bx1v5bpgb5vg1" path="res://assets/cards/card_2.png" id="4_5sm0d"]
 [ext_resource type="Script" uid="uid://ccgjmurtctj3" path="res://Scripts/Game.gd" id="7_qk7ls"]
 [ext_resource type="Script" uid="uid://brgsaeu8pjjn4" path="res://Scripts/gamestates/player_turn.gd" id="8_1grd7"]
 [ext_resource type="Script" uid="uid://rjifhhn6q1vr" path="res://Scripts/gamestates/dealer_turn.gd" id="9_15kul"]
@@ -13,9 +11,9 @@
 [ext_resource type="Script" uid="uid://cahvi30p0vqjm" path="res://Scripts/gamestates/start.gd" id="11_758gj"]
 [ext_resource type="Script" uid="uid://d1omv8clm8015" path="res://Scripts/gamestates/evaluate.gd" id="12_v5gh4"]
 [ext_resource type="Script" uid="uid://ceh6lodam63x6" path="res://Scripts/gamestates/end_game.gd" id="13_co7th"]
-[ext_resource type="Texture2D" uid="uid://5ygqlq5jwnbu" path="res://assets/external/Playing Cards/card-back1.png" id="14_orbqw"]
 [ext_resource type="Script" uid="uid://cdbf521spm1v5" path="res://Scripts/gamestates/build_deck.gd" id="14_xumr6"]
 [ext_resource type="Script" uid="uid://dcg7wtc3sspt8" path="res://Scripts/gamestates/clear_all_cards.gd" id="15_5sm0d"]
+[ext_resource type="Texture2D" uid="uid://cj554rvllsqxs" path="res://assets/cards/card_back.png" id="15_xumr6"]
 [ext_resource type="Script" uid="uid://l340tvocrno2" path="res://Scripts/gamestates/dealer_deciding.gd" id="16_oye3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ukqk2"]
@@ -60,11 +58,13 @@ vertical_alignment = 1
 position = Vector2(-400, 100)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy/Player_2_Card_1"]
-texture = ExtResource("3_r7anb")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xumr6")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Enemy/Player_2_Card_1"]
 position = Vector2(100, 0)
-texture = ExtResource("4_xumr6")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xumr6")
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(500, 500)
@@ -87,11 +87,13 @@ vertical_alignment = 1
 position = Vector2(-400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Player_1_Card_1"]
-texture = ExtResource("5_5sm0d")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_5sm0d")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Player/Player_1_Card_1"]
 position = Vector2(100, 0)
-texture = ExtResource("6_oye3g")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xumr6")
 
 [node name="Hit" type="Button" parent="."]
 offset_left = 245.0
@@ -175,4 +177,5 @@ position = Vector2(700, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="Deck"]
 position = Vector2(174, 97)
-texture = ExtResource("14_orbqw")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_xumr6")

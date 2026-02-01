@@ -24,7 +24,6 @@ var player_turn_text: Label
 var hit_button: Button
 var stand_button: Button
 var deal_button: Button
-var shuffle_button: Button
 
 # Hand containers
 var player_hand: Node2D  # Player's hand
@@ -61,7 +60,6 @@ func _ready() -> void:
 	hit_button = get_node(currentRoot + "Hit")
 	stand_button = get_node(currentRoot + "Stand")
 	deal_button = get_node(currentRoot + "Deal_Button")
-	shuffle_button = get_node(currentRoot + "Shuffle_Button")
 	
 	deck = get_node(currentRoot + "Deck")
 	player_1_card_1 = get_node(currentRoot + "Player/Player_1_Card_1")
