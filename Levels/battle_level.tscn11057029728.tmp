@@ -531,7 +531,7 @@ metadata/_custom_type_script = "uid://cmttxqlrha37l"
 
 [node name="ActivePlayerModifiers" type="Node2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(-900, -700)
+position = Vector2(-900, -500)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
