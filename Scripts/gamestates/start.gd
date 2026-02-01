@@ -2,20 +2,15 @@ class_name Start
 extends GameState
 
 func enter_state():
-	# Reset the game state
-	game.reset_game()
-	
-	game.player_turn_text.text = 'Press Deal to start'
-	game.score_text.text = 'Ready to play'
-	
 	# Disable action buttons
 	game.hit_button.disabled = true
 	game.stand_button.disabled = true
 	
-	# Enable deal button
-	game.deal_button.disabled = false
-	
 	pass
+	
+func execute():
+	if game.game_state == game.start:
+		game.update_state(game.clear_all_cards)
 	
 func exit_state():
 	pass

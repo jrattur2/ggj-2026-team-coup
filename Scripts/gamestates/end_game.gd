@@ -13,13 +13,10 @@ func enter_state():
 	# Disable all action buttons
 	game.hit_button.disabled = true
 	game.stand_button.disabled = true
-	game.deal_button.disabled = false
 
 	
 	pass
 
 func exit_state():
-	
-	game.initialise_cards()
 	
 	pass

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tjtpr2ap7317"
+path="res://.godot/imported/GGJ Card GameModifiers.mp3-3740a505429b54b6218f7f72cd2e0d1b.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/GGJ Card GameModifiers.mp3"
+dest_files=["res://.godot/imported/GGJ Card GameModifiers.mp3-3740a505429b54b6218f7f72cd2e0d1b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

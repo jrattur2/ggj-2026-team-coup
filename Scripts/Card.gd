@@ -27,10 +27,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if face_up != previous_face_up_value:
-		if face_up:
-			texture = load(front_texture_file)
-		else:
-			texture = load(rear_texture_file)
-		previous_face_up_value = face_up
 	pass
+	
+func update_display():
+	if face_up:
+		texture = load(front_texture_file)
+	else:
+		texture = load(rear_texture_file)

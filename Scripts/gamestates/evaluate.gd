@@ -1,50 +1,48 @@
 class_name Evaluate
 extends GameState
 
+var timer_start_time: float = 0.0
+
 func enter_state():
+	
+	timer_start_time = Time.get_ticks_msec()
+	
 	# Reveal dealer's hidden card
 	var dealer_cards = game.get_hand_cards(game.dealer_hand)
 	for card in dealer_cards:
 		card.face_up = true
 	
-	var player_cards = game.get_hand_cards(game.player_hand)
-	var dealer_cards_array = game.get_hand_cards(game.dealer_hand)
+	var player_value_min = game.calculate_hand_value(game.player_hand)[0]
+	var player_value_max = game.calculate_hand_value(game.player_hand)[1]
+	var dealer_value_min = game.calculate_hand_value(game.dealer_hand)[0]
+	var dealer_value_max = game.calculate_hand_value(game.dealer_hand)[1]
 	
-	var player_value = game.calculate_hand_value(player_cards)
-	var dealer_value = game.calculate_hand_value(dealer_cards_array)
+	var player_score = player_value_max if player_value_max <= 21 else player_value_min
+	var dealer_score = dealer_value_max if dealer_value_max <= 21 else dealer_value_min
 	
-	var result_text = ""
+	var player_blackjack = (player_value_min == 21 or player_value_max == 21) and game.player_hand.get_children().size() == 2
+	var dealer_blackjack = (dealer_value_min == 21 or dealer_value_max == 21) and game.dealer_hand.get_children().size() == 2
 	
-	# Check for blackjack
-	if game.is_blackjack(player_cards) and game.is_blackjack(dealer_cards_array):
-		result_text = "Both have Blackjack! Push (Tie)"
-	elif game.is_blackjack(player_cards):
-		result_text = "Blackjack! You Win!"
-	elif game.is_blackjack(dealer_cards_array):
-		result_text = "Dealer has Blackjack! You Lose!"
-	# Check for busts
-	elif game.is_busted(player_cards):
-		result_text = "You Busted! You Lose!"
-	elif game.is_busted(dealer_cards_array):
-		result_text = "Dealer Busted! You Win!"
-	# Compare scores
-	elif player_value > dealer_value:
-		result_text = "You Win! " + str(player_value) + " vs " + str(dealer_value)
-	elif dealer_value > player_value:
-		result_text = "Dealer Wins! " + str(dealer_value) + " vs " + str(player_value)
-	else:
-		result_text = "Push (Tie)! " + str(player_value) + " vs " + str(dealer_value)
+	if player_score == dealer_score:
+		game.player_turn_text.text = 'Tie, no winner'		
 	
-	# Store results in EndGame state before transitioning
-	var end_game_state: EndGame = game.end_game as EndGame
-	end_game_state.player_value = player_value
-	end_game_state.dealer_value = dealer_value
-	end_game_state.result_text = result_text
+	elif player_blackjack  and  not dealer_blackjack:
+		game.player_turn_text.text = 'Player Black Jack, Player Wins'
+		
+	elif player_blackjack  and  not dealer_blackjack:
+		game.player_turn_text.text = 'Dealer Black Jack, Dealer Wins'
 	
-	# Transition to EndGame state to show final score
-	game.update_state(game.end_game)
+	elif player_score > dealer_score:
+		game.player_turn_text.text = 'Player wins'
+		
+	elif player_score < dealer_score:
+		game.player_turn_text.text = 'Dealer wins'
 	
 	pass
+
+func execute():
+	if Time.get_ticks_msec() > (timer_start_time + 8000):
+		game.update_state(game.clear_all_cards)
 
 func exit_state():
 	pass
