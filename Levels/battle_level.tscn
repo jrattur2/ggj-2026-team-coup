@@ -19,7 +19,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ukqk2"]
 font_size = 48
 
-[node name="BattleLevel" type="Node2D"]
+[node name="BattleLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_2r8sw")
 
 [node name="Enemy" type="Node2D" parent="."]
@@ -96,6 +98,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_xumr6")
 
 [node name="Hit" type="Button" parent="."]
+layout_mode = 0
 offset_left = 245.0
 offset_top = 642.0
 offset_right = 308.0
@@ -103,6 +106,7 @@ offset_bottom = 673.0
 text = "Hit"
 
 [node name="Stand" type="Button" parent="."]
+layout_mode = 0
 offset_left = 430.0
 offset_top = 646.0
 offset_right = 493.0
@@ -110,6 +114,7 @@ offset_bottom = 677.0
 text = "Stand"
 
 [node name="Deal_Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 873.0
 offset_top = 448.0
 offset_right = 936.0
@@ -117,6 +122,7 @@ offset_bottom = 479.0
 text = "Deal"
 
 [node name="PlayerTurnText" type="Label" parent="."]
+layout_mode = 0
 offset_left = 285.0
 offset_top = 338.0
 offset_right = 417.0
@@ -124,6 +130,7 @@ offset_bottom = 361.0
 text = "Player Turn"
 
 [node name="ScoreText" type="Label" parent="."]
+layout_mode = 0
 offset_left = 585.0
 offset_top = 651.0
 offset_right = 717.0

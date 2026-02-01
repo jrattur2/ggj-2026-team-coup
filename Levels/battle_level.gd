@@ -1,4 +1,4 @@
-class_name BattleLevel extends Node2D
+class_name BattleLevel extends Node
 
 #region Signal
 signal on_win(player: PlayerInfo)
